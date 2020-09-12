@@ -1,12 +1,11 @@
 ﻿//Tennessee Bonner
 //tennessee.bonner@protonmail.com
 //https://github.com/tennesseeBonner1
-//August 30, 2020
+//September 11, 2020
 //
 //Basker.cs
 //Used to run a basker routine for the player to "bask in the glory of their accomplishments".
-//This Class contains public variables, a Start, and Update function 
-//Public values are controlled in GameMaster to make basking true and reset undo
+//Public values are controlled in GameMaster
 //Essentially once basking starts the player must either press confirm or undo to procede.
 using System.Collections;
 using System.Collections.Generic;
@@ -15,14 +14,15 @@ using UnityEngine.InputSystem;
 
 public class Basker : MonoBehaviour
 {
-    public bool basking;
-    public bool undo;
-    public bool undoable;
+    public bool basking;    //If the basking state is active 
+    public bool undo;       //If undo is pushed
+    public bool undoable;   //If basking is undoable(not turn 0)
 
-    PlayerControls controls;
+    private bool tutorialFinished = false;  //If the bask tutorial is finished
 
-    private bool tutorialFinished = false;
+    private PlayerControls controls; //The PlayerControls 
 
+    //Get the controls and set the public bools
     void Awake()
     {
         controls = new PlayerControls();
@@ -33,12 +33,16 @@ public class Basker : MonoBehaviour
         undoable = false;
     }
 
+    //If confirm is pushed
     void Confirm()
     {
+        //Only works if Game is not paused
         if (!PauseMenu.GameIsPaused)
         {
+            //Only moves on if tutorial 1 is passed
             if (Tutorial.tutorialNumber > 1)
             {
+
                 if (!tutorialFinished)
                     Tutorial.tutorialNumber = 3;
                 tutorialFinished = true;
@@ -49,6 +53,7 @@ public class Basker : MonoBehaviour
         }
     }
 
+    //If Undo is pushed
     void Undo()
     {
         if (!PauseMenu.GameIsPaused)
@@ -62,6 +67,7 @@ public class Basker : MonoBehaviour
         }
     }
 
+    //These are required for the controls
     void OnEnable()
     {
         controls.Gameplay.Enable();

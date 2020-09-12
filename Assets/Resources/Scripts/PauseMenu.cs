@@ -1,44 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Tennessee Bonner
+//tennessee.bonner@protonmail.com
+//https://github.com/tennesseeBonner1
+//September 12, 2020
+//
+//PauseMenu.cs
+//Controls the pause menu and all the buttons associated with it
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
+    public static bool GameIsPaused = false;//If the game is currently paused
 
-    public GameObject pauseMenuUI;
-    private GameObject destroyerOfWorlds;
+    public GameObject pauseMenuUI;     //The canvas for the pause menu 
+    public GameObject pauseFirstButton;//The first button selected in the pause menu
 
-    private LevelLoader ll;
+    private LevelLoader ll;//The level loader
 
-    public GameObject pauseFirstButton;
+    private PlayerControls controls;//The player controls
 
-    PlayerControls controls;
-
+    //Get the level loader, controls and Resume
     private void Awake()
     {
-        destroyerOfWorlds = GameObject.Find("LevelLoader");
+        GameObject destroyerOfWorlds = GameObject.Find("LevelLoader");
         ll = destroyerOfWorlds.GetComponent<LevelLoader>();
 
         controls = new PlayerControls();
         controls.Gameplay.Pause.performed += ctx => Decide();
         Resume();
     }
+
+    //Called if pause button is pushed
     void Decide()
     {
         if (GameIsPaused)
-        {
             Resume();
-        }
 
         else
-        {
             Pause();
-        }
     }
 
+    //Closes the menu and resumes the game
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -46,6 +48,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
     }
 
+    //Opens the menu and pauses the game
     void Pause()
     {
         pauseMenuUI.SetActive(true);
@@ -57,6 +60,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = true;
     }
 
+    //Reset the current level 
     public void Reset()
     {
         pauseMenuUI.SetActive(false);
@@ -65,6 +69,7 @@ public class PauseMenu : MonoBehaviour
         ll.ResetScene();
     }
 
+    //Give up and go to the main menu
     public void GiveUp()
     {
         pauseMenuUI.SetActive(false);
@@ -73,12 +78,14 @@ public class PauseMenu : MonoBehaviour
         ll.LoadMainMenu();
     }
 
+    //Close the application
     public void EndGame()
     {
         Debug.Log("Ending game");
         Application.Quit();
     }
 
+    //Required for the controls
     void OnEnable()
     {
         controls.Gameplay.Enable();

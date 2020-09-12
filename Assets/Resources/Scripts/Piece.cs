@@ -1,26 +1,23 @@
 ﻿//Tennessee Bonner
 //tennessee.bonner@protonmail.com
 //https://github.com/tennesseeBonner1
-//August 30, 2020
+//September 12, 2020
 //
 //Piece.cs
 //Contains the Piece class which is used in PackItUpPackItIn.
-//This Class contains private variables, a constuctor, and getters and setters for public variables.
 //Piece is controlled by the GameMaster, where multiple pieces are created; Board can also hold a piece object.
-using System.Collections;
 using UnityEngine;
 
 public class Piece
 {
-    //Three representations of the piece so moves can be undone
-    private bool[,,] originalMatrix = new bool[5, 5, 5];
-    private bool[,,] rotatingMatrix = new bool[5, 5, 5];       
-    private bool[,,] translatingMatrix = null;                 
+    private bool[,,] originalMatrix = new bool[5, 5, 5];//The initial 5x5x5 representation of the piece
+    private bool[,,] rotatingMatrix = new bool[5, 5, 5];//The matrix during rotation       
+    private bool[,,] translatingMatrix = null;          //The matrix during translation        
 
-    //The shape of the piece
-    private int shape;
+    
+    private int shape;//The shape of the piece
 
-    private Vector3 center = new Vector3(0f, 1.5f, 0f);        
+    private Vector3 center = new Vector3(0f, 1.5f, 0f);//Vector for the center of the piece(changes as rotation finishes)        
 
     //The Matricies all pieces should have initially 
     private bool[,,] CPosition5 = new bool[,,] {           {{ false, false, false, false, false },

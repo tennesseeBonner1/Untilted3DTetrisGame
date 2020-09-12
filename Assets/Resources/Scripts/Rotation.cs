@@ -1,40 +1,37 @@
 ﻿//Tennessee Bonner
 //tennessee.bonner@protonmail.com
 //https://github.com/tennesseeBonner1
-//August 30, 2020
+//September 12, 2020
 //
 //Roatation.cs
 //Used to run a Rotation routine for the player to rotate the piece.
-//This Class contains private variables, public variables, a Start, Update, private functions and a post rotation routine to run if undo is not pushed.
 //Public values are controlled in GameMaster in order to use the rotation script as a calculator for all parts of piece rotation.
 //GameMaster also will use the values determined during the rotation routine to use in the game.
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Rotation : MonoBehaviour
 {
-    public bool Rotating;
-    public bool undo;
+    public bool Rotating;//If the rotation routine is active
+    public bool undo;    //If undo is pushed
 
-    private float rotationPressingTimer;
-    private float rotationPressingTime = 0.12f;
+    public bool[,,] RotatingMatrix { get; set; } = new bool[5,5,5]; //Hold the 5x5x5 matrix that will be rotated
 
-    public bool[,,] RotatingMatrix { get; set; } = new bool[5,5,5];
+    private float rotationPressingTimer;       //Timer for the cooldown
+    private float rotationPressingTime = 0.15f;//Cooldown for a rotation button being pushed
 
-    public GameObject RotatingObject;
+    public GameObject RotatingObject;//GameObject for the piece rotating
 
-    public Piece RotatingPiece;
+    public Piece RotatingPiece;//The piece object that will be rotated
 
-    public AudioManager AudioMan;
+    public AudioManager AudioMan;//The audionmanager
 
-    PlayerControls controls;
+    private PlayerControls controls;//The playercontrols
 
-    Vector2 move;
+    private Vector2 move;//Vector for the rotation move(up,down,left,right)
 
-    private bool tutorialFinished = false;
+    private bool tutorialFinished = false;//If the tutorial is finished
 
+    //Initialize controls, the boolean values, audiomanager etc.
     void Awake()
     {
         controls = new PlayerControls();
@@ -55,6 +52,7 @@ public class Rotation : MonoBehaviour
     //Activates when rotating is true and exits if either undo or confirm are pushed 
     void Update()
     {
+
         if (Rotating && !PauseMenu.GameIsPaused)
         {
             rotationPressingTimer -= Time.deltaTime;
@@ -163,6 +161,7 @@ public class Rotation : MonoBehaviour
         }
     }
 
+    //Confirm rotation
     private void Confirm()
     {
         if (!PauseMenu.GameIsPaused)
@@ -184,6 +183,7 @@ public class Rotation : MonoBehaviour
         }
     }
 
+    //Undo move
     private void Undo()
     {
         if (!PauseMenu.GameIsPaused)
@@ -198,6 +198,7 @@ public class Rotation : MonoBehaviour
             }
         }
     }
+
     //Used once confirm is pushed to shrink the 5x5x5 array to a more condensed 4x4x4 representation of the piece(no need for a rotation axis anymore), with the piece on the "floor" or the matirx.
     private bool[,,] shrinkArray()
     {
@@ -208,6 +209,7 @@ public class Rotation : MonoBehaviour
         int[] checkOrder = { 2, 3, 1, 4, 0 };
         int[] elimVals = { 2, 2, 2 };
             
+        //Checek what slices of the 5x5x5 matrix are clear of pieces
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 5; j++)
@@ -220,7 +222,7 @@ public class Rotation : MonoBehaviour
             }
         }
 
-        
+        //Adjust the center 
         float diffX = (float)(2f - elimVals[0]);
         float diffY = (float)(2f - elimVals[1]);
         float diffZ = (float)(2f - elimVals[2]);
@@ -253,6 +255,7 @@ public class Rotation : MonoBehaviour
         }
         
 
+        //Esentially scan the 5x5x5 and copy it onto a 4x4x4 matrix
         int scanX = 0, scanY = 0, scanZ = 0;
 
         for (int a = 0; a < 4; a++)
@@ -280,6 +283,7 @@ public class Rotation : MonoBehaviour
             ++scanX;
         }
         
+        //Checek where the lowest piece is
         for (int yLayer = 3; yLayer > -1; yLayer--)
         {
             if (DimensionOccupied(1, yLayer, testArray))
@@ -289,10 +293,11 @@ public class Rotation : MonoBehaviour
             }
         }
 
-        
+        //Adjust the center and submit it
         tempCenter[1] = tempCenter[1] - (float)(3 - lowestLayer);
         RotatingPiece.Center = tempCenter;
 
+        //Drop the piece and return the new 4x4x4 matrix
         int testPosition = lowestLayer;
         
         for (int i = 3; i > -1; i--)
@@ -376,6 +381,7 @@ public class Rotation : MonoBehaviour
             return (int)Mathf.Round((x / (float)2.0));
     }
 
+    //Required for the controls 
     void OnEnable()
     {
         controls.Gameplay.Enable();

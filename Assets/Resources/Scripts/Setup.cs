@@ -1,15 +1,15 @@
 ﻿//Tennessee Bonner
 //tennessee.bonner@protonmail.com
 //https://github.com/tennesseeBonner1
-//September 9, 2020
+//September 12, 2020
 //
 //Setup.cs
-//Contains the Setup class which is used in PackItUpPackItIn.
-using System.Collections;
+//Contains the Setup class which is used to setup a game
 using UnityEngine;
 
 public class Setup : MonoBehaviour
 {
+    //The initial board and piece
     public static int[] startBoard = { 4, 4, 4};               
     public static int[] pieces = { 1, 0, 2, 5, 1, 2, 2, 3 };
 
@@ -17,8 +17,11 @@ public class Setup : MonoBehaviour
 
     void Awake()
     {
+        //If there's no setup, there is now
         if (Instance == null)
             Instance = this;
+
+        //There can be only one
         else
         {
             Destroy(gameObject);

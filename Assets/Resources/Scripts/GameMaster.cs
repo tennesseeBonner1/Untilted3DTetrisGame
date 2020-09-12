@@ -1,17 +1,19 @@
 ﻿//Tennessee Bonner
 //tennessee.bonner@protonmail.com
 //https://github.com/tennesseeBonner1
-//August 30, 2020
+//September 11, 2020
 //
 //GameMaster.cs
-//The GameMaster controls everything in the project, including: 
-//- creates piece and board objects
+//The GameMaster controls everything in the game scene, including: 
+//- creating piece and board objects
 //- runs the Basker, Selection, Rotation and Translation scripts 
 //- uses Rotation and Translation scripts to calculate player input changes for pieces
 using System.Collections;
 using UnityEngine;
 
+//Enumerator for the state the game is in
 public enum GameState { SELECTION, ROTATION, TRANSLATION, BASKING }
+
 public class GameMaster : MonoBehaviour
 {
     private bool active;

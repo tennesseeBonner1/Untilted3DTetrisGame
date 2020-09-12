@@ -1,39 +1,36 @@
 ﻿//Tennessee Bonner
 //tennessee.bonner@protonmail.com
 //https://github.com/tennesseeBonner1
-//August 30, 2020
+//September 12, 2020
 //
 //Translation.cs
 //Used to run a Translation routine for the player to translate the piece.
-//This Class contains private variables, public variables, a Start, Update, and a private function for confirming if a drop is valid.
 //Public values are controlled in GameMaster in order to use the translation script as a calculator for all parts of piece translation.
 //GameMaster also will use the values determined during the translation routine to use in the game.
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Translation : MonoBehaviour
 {
-    public bool Translating;
-    public bool undo;
+    public bool Translating;//If the translating routine is active
+    public bool undo;       //If the undo routine is active
 
-    private float translatingPressingTimer;
-    private float translatingPressingTime = 0.12f;
+    private float translatingPressingTimer;       //Timer for the cooldown
+    private float translatingPressingTime = 0.12f;//Cooldown for translating
                        
-    public bool[,,] TranslatingMatrix { get; set; } = new bool[4,4,4];
-    public bool[,,] BoardMatrix { get; set; } = new bool[4, 4, 4];
+    public bool[,,] TranslatingMatrix { get; set; } = new bool[4,4,4];//Matrix being translated
+    public bool[,,] BoardMatrix { get; set; } = new bool[4, 4, 4];    //The board the piece will be going on
 
-    public GameObject TranslatingObject;
+    public GameObject TranslatingObject;//The piece gameobject being translated
 
-    public AudioManager AudioMan;
+    public AudioManager AudioMan;//The audiomanager
 
-    PlayerControls controls;
+    private PlayerControls controls;//The playercontrols
 
-    Vector2 move;
+    private Vector2 move;//Vector for the direction the piece is moving in
 
-    private bool tutorialFinished = false;
+    private bool tutorialFinished = false;//If the tutorial is finished
 
+    //Get the controls, set the boolean values and get the gameobjects
     private void Awake()
     {
         controls = new PlayerControls();
@@ -144,6 +141,7 @@ public class Translation : MonoBehaviour
         }
     }
 
+    //If confirm is pushed
     private void Confirm()
     {
         if (!PauseMenu.GameIsPaused)
@@ -169,7 +167,8 @@ public class Translation : MonoBehaviour
             }
         }
     }
-
+    
+    //If undo is pushed 
     private void Undo()
     {
         if (!PauseMenu.GameIsPaused)
@@ -193,6 +192,7 @@ public class Translation : MonoBehaviour
         int cpY = TranslatingMatrix.GetLength(1);
         int cpZ = TranslatingMatrix.GetLength(2);
 
+        //Assemble the piece coordinates
         int[,] pieceList = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
 
         int pn = 0;
@@ -214,9 +214,7 @@ public class Translation : MonoBehaviour
             }
         }
 
-        int cbX = BoardMatrix.GetLength(0);
         int cbY = BoardMatrix.GetLength(1);
-        int cbZ = BoardMatrix.GetLength(2);
 
         int difference = cbY - 4;
 
@@ -269,6 +267,7 @@ public class Translation : MonoBehaviour
         return false;
     }
 
+    //Needed for player controls
     void OnEnable()
     {
         controls.Gameplay.Enable();

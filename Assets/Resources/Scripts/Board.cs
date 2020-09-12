@@ -1,11 +1,10 @@
 ﻿//Tennessee Bonner
 //tennessee.bonner@protonmail.com
 //https://github.com/tennesseeBonner1
-//August 30, 2020
+//September 11, 2020
 //
 //Board.cs
 //Contains the Board class which is used in PackItUpPackItIn.
-//This Class contains private variables, a constuctor, and getters and setters for public variables.
 //Board is controlled by the GameMaster, where multiple boards are created.
 using System.Collections;
 using UnityEngine;

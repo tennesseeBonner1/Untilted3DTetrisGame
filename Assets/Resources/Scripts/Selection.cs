@@ -1,34 +1,33 @@
 ﻿//Tennessee Bonner
 //tennessee.bonner@protonmail.com
 //https://github.com/tennesseeBonner1
-//August 30, 2020
+//September 12, 2020
 //
 //Selection.cs
 //Used to run a Selection routine for the player to select what piece they want.
-//This Class contains private variables, public variables, a Start, Update and functions for all of the buttons to use
 //Public values are controlled in GameMaster to make some buttons unusable in the selection.
 //GameMaster also will use the value determined during the selection routine to use in the game.
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
 public class Selection : MonoBehaviour
 {
-    public bool selecting;
-    public bool undo;
-    private bool done;
-    public int currentPiece;
+    public bool selecting;//If selecting routine is active
+    public bool undo;     //If undo is pushed
+
+    private bool done;//If the menu has been opened 
+
+    public int currentPiece;//The piece that is selected
       
-    private GameObject peiceSelectionMenuUI;  
+    private GameObject peiceSelectionMenuUI;//The canvas for the pause menu  
 
-    public Piece[][] Pieces;
+    public Piece[][] Pieces;//The pieces array used to tell what's left
 
-    public GameObject psmFirstButton;
+    public GameObject psmFirstButton;//The first button selected in the pause menu
 
-    PlayerControls controls;
+    private PlayerControls controls;//The platercontrols
 
+    //Get the controls, set up the boolean values and close the pause menu by default
     void Awake()
     {
         controls = new PlayerControls();
@@ -40,7 +39,6 @@ public class Selection : MonoBehaviour
 
         currentPiece = -1;
 
-        //Save and disable the piece selection menu
         peiceSelectionMenuUI = GameObject.FindGameObjectWithTag("PieceSelection");
         peiceSelectionMenuUI.SetActive(false);
     }
@@ -68,13 +66,13 @@ public class Selection : MonoBehaviour
         }
     }
 
+    //If undo is pushed during selection
     void Undo()
     {
         if (!PauseMenu.GameIsPaused)
         {
             if (selecting)
             {
-                Debug.Log("Undooo");
                 peiceSelectionMenuUI.SetActive(false);
                 Time.timeScale = 1f;
                 undo = true;
@@ -205,6 +203,7 @@ public class Selection : MonoBehaviour
         done = false;
     }
 
+    //Required for the controls
     void OnEnable()
     {
         controls.Gameplay.Enable();
