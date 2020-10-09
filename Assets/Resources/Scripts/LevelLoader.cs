@@ -13,7 +13,7 @@ public class LevelLoader : MonoBehaviour
 {
     public Animator transition; //The animator for the transition
 
-    public float TransitionTime = 1f;   //The transitionTime
+    public float TransitionTime = .8f;   //The transitionTime
 
     //Loads next level by using the coroutine below
     public void LoadNextLevel()

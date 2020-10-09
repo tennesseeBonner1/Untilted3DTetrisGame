@@ -20,7 +20,7 @@ public class Piece
     private Vector3 center = new Vector3(0f, 1.5f, 0f);//Vector for the center of the piece(changes as rotation finishes)        
 
     //The Matricies all pieces should have initially 
-    private bool[,,] CPosition5 = new bool[,,] {           {{ false, false, false, false, false },
+    private bool[,,] CPosition5 = new bool[,,] {       {{ false, false, false, false, false },
                                                         { false, false, false, false, false },
                                                         { false, false, false, false, false },
                                                         { false, false, false, false, false },

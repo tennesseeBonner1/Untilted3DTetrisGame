@@ -54,7 +54,7 @@ public class GameMaster : MonoBehaviour
         //Get the Setup
         boardDimensions = Setup.startBoard;
         int [] pieceCount =  Setup.pieces;
-         boardCount =  Setup.getCount();
+        boardCount =  Setup.getCount();
 
         Pieces = new Piece[pieceCount.Length][];
         Pieces[0] = new Piece[pieceCount[0]];
