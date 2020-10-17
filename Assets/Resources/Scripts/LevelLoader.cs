@@ -18,7 +18,10 @@ public class LevelLoader : MonoBehaviour
     //Loads next level by using the coroutine below
     public void LoadNextLevel()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+            StartCoroutine(LoadLevel(1));
+        else
+            StartCoroutine(LoadLevel(0));
     }
 
     IEnumerator LoadLevel(int levelIndex)

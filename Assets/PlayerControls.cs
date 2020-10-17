@@ -57,6 +57,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SnapCam"",
+                    ""type"": ""Button"",
+                    ""id"": ""f3a38c43-bb5c-457a-b94c-f368c65bf162"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -125,6 +133,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6133efee-26ba-46be-91cc-1acf2976c4fa"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SnapCam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -138,6 +157,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Rotate = m_Gameplay.FindAction("Rotate", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
+        m_Gameplay_SnapCam = m_Gameplay.FindAction("SnapCam", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -192,6 +212,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_Rotate;
     private readonly InputAction m_Gameplay_Pause;
+    private readonly InputAction m_Gameplay_SnapCam;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -201,6 +222,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @Rotate => m_Wrapper.m_Gameplay_Rotate;
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
+        public InputAction @SnapCam => m_Wrapper.m_Gameplay_SnapCam;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -225,6 +247,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @SnapCam.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSnapCam;
+                @SnapCam.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSnapCam;
+                @SnapCam.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSnapCam;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -244,6 +269,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @SnapCam.started += instance.OnSnapCam;
+                @SnapCam.performed += instance.OnSnapCam;
+                @SnapCam.canceled += instance.OnSnapCam;
             }
         }
     }
@@ -255,5 +283,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnSnapCam(InputAction.CallbackContext context);
     }
 }

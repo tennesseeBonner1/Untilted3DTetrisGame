@@ -18,8 +18,6 @@ public class Basker : MonoBehaviour
     public bool undo;       //If undo is pushed
     public bool undoable;   //If basking is undoable(not turn 0)
 
-    private bool tutorialFinished = false;  //If the bask tutorial is finished
-
     private PlayerControls controls; //The PlayerControls 
 
     //Get the controls and set the public bools
@@ -39,17 +37,8 @@ public class Basker : MonoBehaviour
         //Only works if Game is not paused
         if (!PauseMenu.GameIsPaused)
         {
-            //Only moves on if tutorial 1 is passed
-            if (Tutorial.tutorialNumber > 1)
-            {
-
-                if (!tutorialFinished)
-                    Tutorial.tutorialNumber = 3;
-                tutorialFinished = true;
-                Debug.Log("Going back");
-                if (basking)
-                    basking = false;
-            }
+            if (basking)
+                basking = false;
         }
     }
 

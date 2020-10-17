@@ -28,8 +28,7 @@ public class Rotation : MonoBehaviour
     private PlayerControls controls;//The playercontrols
 
     private Vector2 move;//Vector for the rotation move(up,down,left,right)
-
-    private bool tutorialFinished = false;//If the tutorial is finished
+    private Vector2 mirrorMove;
 
     //Initialize controls, the boolean values, audiomanager etc.
     void Awake()
@@ -60,9 +59,26 @@ public class Rotation : MonoBehaviour
             //If the timer hasn't been pushed for the specified rotationPressingTime the buttons are unlocked 
             if (rotationPressingTimer <= 0)
             {
-                if (move.x > 0.1 || move.x < - 0.1)
+
+                switch (CameraRotator.cameraOrientation)
                 {
-                    if (move.x > 0)
+                    case (0):
+                        mirrorMove = new Vector2(x: move.x, y: move.y);
+                        break;
+                    case (1):
+                        mirrorMove = new Vector2(x: -move.y, y: move.x);
+                        break;
+                    case (2):
+                        mirrorMove = new Vector2(x: -move.x, y: -move.y);
+                        break;
+                    case (3):
+                        mirrorMove = new Vector2(x: move.y, y: -move.x);
+                        break;
+                }
+
+                if (mirrorMove.x > 0.1 || mirrorMove.x < - 0.1)
+                {
+                    if (mirrorMove.x > 0)
                     {
                         RotatingObject.transform.Rotate(Vector3.forward, -90f, Space.World);
                         rotationPressingTimer = rotationPressingTime;
@@ -108,9 +124,9 @@ public class Rotation : MonoBehaviour
                         }
                     }
                 }
-                else if (move.y > 0.1 || move.y < -0.1)
+                else if (mirrorMove.y > 0.1 || mirrorMove.y < -0.1)
                 {
-                    if (move.y > 0)
+                    if (mirrorMove.y > 0)
                     {
                         RotatingObject.transform.Rotate(Vector3.left, -90f, Space.World);
                         rotationPressingTimer = rotationPressingTime;
@@ -168,10 +184,6 @@ public class Rotation : MonoBehaviour
         {
             if (Rotating)
             {
-                if (!tutorialFinished)
-                    Tutorial.tutorialNumber = 5;
-                tutorialFinished = true;
-
                 if (rotationPressingTimer <= 0)
                 {
                     Debug.Log("Confirm pushed");
@@ -348,7 +360,9 @@ public class Rotation : MonoBehaviour
     public void postRotation(int xDim, int zDim)
     {
         int xStart = calculatePiecePosition(xDim);  
-        int zStart = calculatePiecePosition(zDim);  
+        int zStart = calculatePiecePosition(zDim);
+
+        Debug.Log("xStart is " + xStart + " and zStart is " + zStart);
         bool[,,] newPiece = new bool[xDim, 4, zDim];
 
         int offsetZ, offsetY, offsetX = 0;
