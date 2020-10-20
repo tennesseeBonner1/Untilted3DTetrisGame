@@ -17,8 +17,10 @@ public class CameraRotator : MonoBehaviour
 
     public GameObject cameraPrefab;
     public GameObject planePrefab;
+    public GameObject BoardHolder;
 
-    private new GameObject[] camera;
+    private GameObject[] camera;
+    private GameObject CameraHolder;
 
     public int cameraDFC = 5;
 
@@ -43,6 +45,12 @@ public class CameraRotator : MonoBehaviour
         controls.Gameplay.Rotate.performed += ctx => rotate = ctx.ReadValue<Vector2>();
         controls.Gameplay.Rotate.canceled += ctx => rotate = Vector2.zero;
         controls.Gameplay.SnapCam.performed += ctx => SnapCamera();
+
+        CameraHolder = new GameObject();
+        CameraHolder.name = "Cameras";
+
+        BoardHolder = new GameObject();
+        BoardHolder.name = "Board";
 
         //Create all the cameras
         CreateCameras();
@@ -72,22 +80,22 @@ public class CameraRotator : MonoBehaviour
         //Create the cameras, correct their positions, then activate camera[0]
         camera = new GameObject[12];
         
-        camera[0] = Instantiate(cameraPrefab, new Vector3(0, wholeDist, -wholeDist), Quaternion.Euler(45, 0, 0));
-        camera[1] = Instantiate(cameraPrefab, new Vector3(halfDist, wholeDist, -almstWhleDist), Quaternion.Euler(45, -30, 0));
-        camera[2] = Instantiate(cameraPrefab, new Vector3(almstWhleDist, wholeDist, -halfDist), Quaternion.Euler(45, -60, 0));
-        camera[3] = Instantiate(cameraPrefab, new Vector3(wholeDist, wholeDist, 0), Quaternion.Euler(45, -90, 0));
-        camera[4] = Instantiate(cameraPrefab, new Vector3(almstWhleDist, wholeDist, halfDist), Quaternion.Euler(45, -120, 0));
-        camera[5] = Instantiate(cameraPrefab, new Vector3(halfDist, wholeDist, almstWhleDist), Quaternion.Euler(45, -150, 0));
-        camera[6] = Instantiate(cameraPrefab, new Vector3(0, wholeDist, wholeDist), Quaternion.Euler(45, -180, 0));
-        camera[7] = Instantiate(cameraPrefab, new Vector3(-halfDist, wholeDist, almstWhleDist), Quaternion.Euler(45, 150, 0));
-        camera[8] = Instantiate(cameraPrefab, new Vector3(-almstWhleDist, wholeDist, halfDist), Quaternion.Euler(45, 120, 0));
-        camera[9] = Instantiate(cameraPrefab, new Vector3(-wholeDist, wholeDist, 0), Quaternion.Euler(45, 90, 0));
-        camera[10] = Instantiate(cameraPrefab, new Vector3(-almstWhleDist, wholeDist, -halfDist), Quaternion.Euler(45, 60, 0));
-        camera[11] = Instantiate(cameraPrefab, new Vector3(-halfDist, wholeDist, -almstWhleDist), Quaternion.Euler(45, 30, 0));
+        camera[0] = Instantiate(cameraPrefab, new Vector3(0, wholeDist, -wholeDist), Quaternion.Euler(45, 0, 0)) as GameObject;
+        camera[1] = Instantiate(cameraPrefab, new Vector3(halfDist, wholeDist, -almstWhleDist), Quaternion.Euler(45, -30, 0)) as GameObject;
+        camera[2] = Instantiate(cameraPrefab, new Vector3(almstWhleDist, wholeDist, -halfDist), Quaternion.Euler(45, -60, 0)) as GameObject;
+        camera[3] = Instantiate(cameraPrefab, new Vector3(wholeDist, wholeDist, 0), Quaternion.Euler(45, -90, 0)) as GameObject;
+        camera[4] = Instantiate(cameraPrefab, new Vector3(almstWhleDist, wholeDist, halfDist), Quaternion.Euler(45, -120, 0)) as GameObject;
+        camera[5] = Instantiate(cameraPrefab, new Vector3(halfDist, wholeDist, almstWhleDist), Quaternion.Euler(45, -150, 0)) as GameObject;
+        camera[6] = Instantiate(cameraPrefab, new Vector3(0, wholeDist, wholeDist), Quaternion.Euler(45, -180, 0)) as GameObject;
+        camera[7] = Instantiate(cameraPrefab, new Vector3(-halfDist, wholeDist, almstWhleDist), Quaternion.Euler(45, 150, 0)) as GameObject;
+        camera[8] = Instantiate(cameraPrefab, new Vector3(-almstWhleDist, wholeDist, halfDist), Quaternion.Euler(45, 120, 0)) as GameObject;
+        camera[9] = Instantiate(cameraPrefab, new Vector3(-wholeDist, wholeDist, 0), Quaternion.Euler(45, 90, 0)) as GameObject;
+        camera[10] = Instantiate(cameraPrefab, new Vector3(-almstWhleDist, wholeDist, -halfDist), Quaternion.Euler(45, 60, 0)) as GameObject;
+        camera[11] = Instantiate(cameraPrefab, new Vector3(-halfDist, wholeDist, -almstWhleDist), Quaternion.Euler(45, 30, 0)) as GameObject;
 
-        camera[0].GetComponent<Camera>().enabled = true;
+        camera[0].GetComponent<Camera>().enabled = false;
         camera[1].GetComponent<Camera>().enabled = false;
-        camera[2].GetComponent<Camera>().enabled = false;
+        camera[2].GetComponent<Camera>().enabled = true;
         camera[3].GetComponent<Camera>().enabled = false;
         camera[4].GetComponent<Camera>().enabled = false;
         camera[5].GetComponent<Camera>().enabled = false;
@@ -98,7 +106,13 @@ public class CameraRotator : MonoBehaviour
         camera[10].GetComponent<Camera>().enabled = false;
         camera[11].GetComponent<Camera>().enabled = false;
 
-        cameraVal = 0;
+        for (int i = 0; i < 12; i++)
+        {
+            camera[i].name = "Camera " + i;
+            camera[i].transform.SetParent(CameraHolder.transform);
+        }
+
+        cameraVal = 2;
     }
 
     void CreateBoard()
@@ -115,8 +129,12 @@ public class CameraRotator : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             for (int x = 0; x < bsX; x++)
+            {
                 for (int z = 0; z < bsZ; z++)
-                    Instantiate(planePrefab, new Vector3(startXPos + x, -0.5f, startZPos - z), Quaternion.identity);
+                {
+                    Instantiate(planePrefab, new Vector3(startXPos + x, -0.5f, startZPos - z), Quaternion.identity).transform.SetParent(BoardHolder.transform);
+                }
+            }
             /*
             for (int x = 0; x < bsX; x++)
                 for (int z = 0; z < bsZ; z++)
@@ -128,7 +146,7 @@ public class CameraRotator : MonoBehaviour
     void Update()
     {
         cameraTurnTimer -= Time.deltaTime;
-        if (cameraTurnTimer <= 0)
+        if (cameraTurnTimer <= 0 && !Selection.selecting)
         {
             if (rotate.x > 0.3 || rotate.x < -0.3)
             {

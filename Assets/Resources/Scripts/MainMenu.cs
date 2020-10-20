@@ -5,17 +5,21 @@
 //
 //MainMenu.cs
 //Controls the main menu and all the buttons associated with that scene
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
+    public float waitTime = 2f;
+    public GameObject startScreen;
     public GameObject mM;  //Main menu canvas
     public GameObject opts;//Options Canvas
     public GameObject mL;  //Make Level Canvas
 
     private GameObject destroyerOfWorlds;//The level loader
 
+    public GameObject sSButton;
     public GameObject mMFirstButton;  //The first selected button in the main menu 
     public GameObject optsFirstButton;//The first selected button in the options menu 
     public GameObject mLFirstButton;  //The first selected button in the make level menu 
@@ -26,11 +30,28 @@ public class MainMenu : MonoBehaviour
         destroyerOfWorlds = new GameObject();
         destroyerOfWorlds = GameObject.Find("LevelLoader");
 
-        mM.SetActive(true);
+        mM.SetActive(false);
         opts.SetActive(false);
         mL.SetActive(false);
+        startScreen.SetActive(false);
+
+        StartCoroutine(Starting());
     }
 
+    IEnumerator Starting()
+    {
+        yield return new WaitForSeconds(waitTime);
+
+        startScreen.SetActive(true);
+        
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(sSButton);
+    }
+    public void LoadMainMenu()
+    {
+        startScreen.SetActive(false);
+        Back();
+    }
     //Hide all the canvases and load the level
     public void LoadLevel()
     {

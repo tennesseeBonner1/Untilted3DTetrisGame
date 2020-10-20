@@ -45,7 +45,6 @@ public class Board
         boardMatrix = new bool[boardDimensions[0], boardDimensions[1], boardDimensions[2]];
     }
 
-
     //Getters and setters so the private values are protected by a layer of abstraction 
     public Piece BoardPiece
     {

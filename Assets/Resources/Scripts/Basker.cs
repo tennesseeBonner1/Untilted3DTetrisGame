@@ -36,10 +36,8 @@ public class Basker : MonoBehaviour
     {
         //Only works if Game is not paused
         if (!PauseMenu.GameIsPaused)
-        {
             if (basking)
                 basking = false;
-        }
     }
 
     //If Undo is pushed

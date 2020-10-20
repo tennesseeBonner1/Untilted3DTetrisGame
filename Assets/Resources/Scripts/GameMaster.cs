@@ -27,7 +27,6 @@ public class GameMaster : MonoBehaviour
     private Piece CurrentPiece;
 
     private GameObject basker;
-    private GameObject selector;
     private GameObject rotator;
     private GameObject translator;
 
@@ -56,6 +55,7 @@ public class GameMaster : MonoBehaviour
         int [] pieceCount =  Setup.pieces;
         boardCount =  Setup.getCount();
 
+        //Create the Objects(not game objects) for pieces and boards
         Pieces = new Piece[pieceCount.Length][];
         Pieces[0] = new Piece[pieceCount[0]];
         Pieces[1] = new Piece[pieceCount[1]];
@@ -67,6 +67,7 @@ public class GameMaster : MonoBehaviour
         Pieces[7] = new Piece[pieceCount[7]];
 
         Boards = new Board[boardCount];
+
         pcs = new GameObject[boardCount];
 
         int count = 0;
@@ -81,12 +82,10 @@ public class GameMaster : MonoBehaviour
             }
         }
 
+        //Access the scripts in these existing gameobject
         basker = GameObject.FindGameObjectWithTag("Basker");
-        selector = GameObject.FindGameObjectWithTag("Selector");
         rotator = GameObject.FindGameObjectWithTag("Rotator");
         translator = GameObject.FindGameObjectWithTag("Translator");
-
-        
 
         state = GameState.BASKING;
         active = true;
@@ -130,75 +129,49 @@ public class GameMaster : MonoBehaviour
         return false;
     }
 
-
-    //Each of the individual coroutines gets the script associated, activates it and yeilds until the script makes itself inactive, then the results are stored.
+    ///IENUMERATORS
+    //Each of the individual coroutines gets the script associated, activates it and yeilds until the script makes itself inactive, then the results are stored. 
     IEnumerator Basking()
     {
-        Debug.Log("In Basking state");
-
+        //If there are no pieces left and it's not the first turn don't move on 
         if (!piecesLeft() && currentTurn > 0)
         {
             GameObject destroyerOfWorlds = GameObject.Find("LevelLoader");
             LevelLoader ll = destroyerOfWorlds.GetComponent<LevelLoader>();
-            Debug.Log("END OF GAME REACHED");
             ll.LoadNextLevel();
         }
         else
         {
-            //// CURRENTLY TESTING
-            Debug.Log("Debuging Basking");
-
-            string matrix = "";
             bool[,,] boardMatrix;
 
-            for (int o = 0; o < boardCount; o++)
-            {
-                matrix += o + " Board: \n" ;
-
-                boardMatrix = Boards[o].BoardMatrix;
-
-                for (int h = 0; h < 4; h++)
-                {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        for (int j = 0; j < 4; j++)
-                            matrix += h + ":" + i + ":" + j + boardMatrix[h, i, j] + " ";
-                        matrix += "\n";
-                    }
-                    matrix += "\n";
-                }
-                matrix += "Piece: " + Boards[o].BoardPiece + "\n\n";
-            }
-
-            string testpath = Application.dataPath + @"\Test\baskingTest.txt";
-            System.IO.File.WriteAllText(testpath, matrix);
-            ////
-            
             Basker bask = basker.GetComponent<Basker>();
             
+            //Don't let the player undo if it's the first turn
             bask.undoable = false;
 
             if (currentTurn > 0)
                 bask.undoable = true;
 
+            //Turn the basking script on and wait for it to finish
             bask.basking = true;
 
             while (bask.basking != false)
                 yield return null;
 
+            //Check if undo is pushed
             if (bask.undo == false)
             {
                 state = GameState.SELECTION;
                 active = true;
             }
+            //Undo back to the state right after the previous rotating routine
             else
             {
+                //Just to be safe
                 if (currentTurn > 0)
                 {
                     AudioMan.Play("Undo");
                     bask.undo = false;
-
-                    Debug.Log("UNDO PUSHED");
 
                     currentTurn -= 1;
 
@@ -229,18 +202,18 @@ public class GameMaster : MonoBehaviour
 
     IEnumerator Selecting()
     {
-        Debug.Log("In Selecting state");
+        //Load in the pieces and select a piece
+        Selection.Pieces = Pieces;
+        Selection.selecting = true;
 
-        Selection select = selector.GetComponent<Selection>();
-        select.Pieces = Pieces;
-        select.selecting = true;
-
-        while (select.selecting != false)
+        while (Selection.selecting != false)
             yield return null;
 
-        if (select.undo == false)
+        //If undo does not happen
+        if (Selection.undo == false)
         {
-            currentPiece = select.currentPiece;
+            //Get the piece from the selection script and adjust the pieces and currentPiece accordingly
+            currentPiece = Selection.currentPiece;
             for (int i = (Pieces[currentPiece].Length - 1); i > -1; i--)
             {
                 if (Pieces[currentPiece][i] != null)
@@ -257,8 +230,7 @@ public class GameMaster : MonoBehaviour
         else
         {
             AudioMan.Play("Undo");
-            Debug.Log("UNDO PUSHED");
-            select.undo = false;
+            Selection.undo = false;
             state = GameState.BASKING;
             active = true;
         }
@@ -266,46 +238,55 @@ public class GameMaster : MonoBehaviour
 
     IEnumerator Rotating()
     {
-        Debug.Log("In Rotating state");
+        string piecename = "Piece " + currentTurn + ": ";
 
         switch (CurrentPiece.Shape)
         {
             case 0:
                 pcs[currentTurn] = Instantiate(Resources.Load("Prefabs/1c Piece") as GameObject, RotationPosition);
+                piecename += "1 Corner";
                 break;
 
             case 1:
                 pcs[currentTurn] = Instantiate(Resources.Load("Prefabs/4c Piece") as GameObject, RotationPosition);
+                piecename += "4 Corner";
                 break;
 
             case 2:
                 pcs[currentTurn] = Instantiate(Resources.Load("Prefabs/I Piece") as GameObject, RotationPosition);
+                piecename += "I";
                 break;
 
             case 3:
                 pcs[currentTurn] = Instantiate(Resources.Load("Prefabs/L Piece") as GameObject, RotationPosition);
+                piecename += "L";
                 break;
 
             case 4:
                 pcs[currentTurn] = Instantiate(Resources.Load("Prefabs/O Piece") as GameObject, RotationPosition);
+                piecename += "O";
                 break;
 
             case 5:
                 pcs[currentTurn] = Instantiate(Resources.Load("Prefabs/S Piece") as GameObject, RotationPosition);
+                piecename += "S";
                 break;
 
             case 6:
                 pcs[currentTurn] = Instantiate(Resources.Load("Prefabs/St Piece") as GameObject, RotationPosition);
+                piecename += "Stair";
                 break;
 
             case 7:
                 pcs[currentTurn] = Instantiate(Resources.Load("Prefabs/T Piece") as GameObject, RotationPosition);
+                piecename += "T";
                 break;
 
             default:
                 Debug.Log("INVALID OBJECT TAG");
                 break;
         }
+        pcs[currentTurn].name = piecename;
 
         Rotation rotation = rotator.GetComponent<Rotation>();
         bool[,,] rotatingMatrix = CurrentPiece.RotatingMatrix;
@@ -338,7 +319,6 @@ public class GameMaster : MonoBehaviour
         else
         {
             AudioMan.Play("Undo");
-            Debug.Log("UNDO PUSHED");
             rotation.undo = false;
 
             CurrentPiece.Center = new Vector3(0f, 1.5f, 0f);
@@ -358,7 +338,7 @@ public class GameMaster : MonoBehaviour
             CurrentPiece = null;
 
             Destroy(pcs[currentTurn]);
-            pcs[currentTurn] = new GameObject();
+            pcs[currentTurn] = null;
 
             state = GameState.SELECTION;
             active = true;
@@ -367,7 +347,6 @@ public class GameMaster : MonoBehaviour
 
     IEnumerator Translating()
     {
-        Debug.Log("In Translating state");
         Translation translation = translator.GetComponent<Translation>();
         bool[,,] translatingMatrix = CurrentPiece.TranslatingMatrix;
         translation.TranslatingMatrix = translatingMatrix.Clone() as bool[,,];
@@ -403,7 +382,6 @@ public class GameMaster : MonoBehaviour
         else
         {
             AudioMan.Play("Undo");
-            Debug.Log("UNDO PUSHED");
             translation.undo = false;
 
             CurrentPiece.TranslatingMatrix = null;
@@ -412,7 +390,7 @@ public class GameMaster : MonoBehaviour
             CurrentPiece.Center = new Vector3(0f, 1.5f, 0f);
 
             Destroy(pcs[currentTurn]);
-            pcs[currentTurn] = new GameObject();
+            pcs[currentTurn] = null;
 
             state = GameState.ROTATION;
             active = true;

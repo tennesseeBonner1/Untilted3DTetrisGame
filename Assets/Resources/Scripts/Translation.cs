@@ -40,7 +40,7 @@ public class Translation : MonoBehaviour
         controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
         Translating = false;
         undo = false;
-        TranslatingObject = new GameObject();
+
         GameObject am = GameObject.Find("AudioManager");
         AudioMan = am.GetComponent<AudioManager>();
     }
@@ -80,7 +80,6 @@ public class Translation : MonoBehaviour
                 {
                     if (mirrorMove.x > 0)
                     {
-                        Debug.Log("Right Pushed");
                         translatingPressingTimer = translatingPressingTime;
 
                         for (int y = 0; y < cpY; y++)
@@ -97,7 +96,6 @@ public class Translation : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Left Pushed");
                         translatingPressingTimer = translatingPressingTime;
 
                         for (int y = 0; y < cpY; y++)
@@ -118,7 +116,6 @@ public class Translation : MonoBehaviour
                 {
                     if (mirrorMove.y > 0)
                     {
-                        Debug.Log("Up Pushed");
                         translatingPressingTimer = translatingPressingTime;
 
                         for (int x = 0; x < cpX; x++)
@@ -135,7 +132,6 @@ public class Translation : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Down Pushed");
                         translatingPressingTimer = translatingPressingTime;
 
                         for (int x = 0; x < cpX; x++)
@@ -166,7 +162,6 @@ public class Translation : MonoBehaviour
                 if (translatingPressingTimer <= 0)
                 {
                     translatingPressingTimer = translatingPressingTime;
-                    Debug.Log("Confirm?");
                     bool result = AttemptDrop();
 
                     if (result)

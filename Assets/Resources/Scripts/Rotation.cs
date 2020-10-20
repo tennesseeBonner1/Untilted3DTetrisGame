@@ -41,7 +41,7 @@ public class Rotation : MonoBehaviour
 
         Rotating = false;
         undo = false;
-        RotatingObject = new GameObject();
+
         RotatingPiece = new Piece(0);
 
         GameObject am = GameObject.Find("AudioManager");
@@ -82,7 +82,6 @@ public class Rotation : MonoBehaviour
                     {
                         RotatingObject.transform.Rotate(Vector3.forward, -90f, Space.World);
                         rotationPressingTimer = rotationPressingTime;
-                        Debug.Log("Right Pushed");
                         AudioMan.Play("Rotate");
                         for (int z = 0; z < 5; z++)
                         {
@@ -103,7 +102,6 @@ public class Rotation : MonoBehaviour
                     {
                         RotatingObject.transform.Rotate(Vector3.forward, 90f, Space.World);
                         rotationPressingTimer = rotationPressingTime;
-                        Debug.Log("Left Pushed");
                         AudioMan.Play("Rotate");
                         for (int i = 0; i < 3; i++)
                         {
@@ -130,7 +128,6 @@ public class Rotation : MonoBehaviour
                     {
                         RotatingObject.transform.Rotate(Vector3.left, -90f, Space.World);
                         rotationPressingTimer = rotationPressingTime;
-                        Debug.Log("Up Pushed");
                         AudioMan.Play("Rotate");
                         for (int i = 0; i < 3; i++)
                         {
@@ -155,7 +152,6 @@ public class Rotation : MonoBehaviour
                     {
                         RotatingObject.transform.Rotate(Vector3.left, 90f, Space.World);
                         rotationPressingTimer = rotationPressingTime;
-                        Debug.Log("Down Pushed");
                         AudioMan.Play("Rotate");
                         for (int x = 0; x < 5; x++)
                         {
@@ -186,7 +182,6 @@ public class Rotation : MonoBehaviour
             {
                 if (rotationPressingTimer <= 0)
                 {
-                    Debug.Log("Confirm pushed");
                     AudioMan.Play("Click");
                     RotatingMatrix = shrinkArray();
                     Rotating = false;
@@ -362,7 +357,6 @@ public class Rotation : MonoBehaviour
         int xStart = calculatePiecePosition(xDim);  
         int zStart = calculatePiecePosition(zDim);
 
-        Debug.Log("xStart is " + xStart + " and zStart is " + zStart);
         bool[,,] newPiece = new bool[xDim, 4, zDim];
 
         int offsetZ, offsetY, offsetX = 0;

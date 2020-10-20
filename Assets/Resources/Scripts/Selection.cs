@@ -12,16 +12,16 @@ using UnityEngine.EventSystems;
 
 public class Selection : MonoBehaviour
 {
-    public bool selecting;//If selecting routine is active
-    public bool undo;     //If undo is pushed
+    public static bool selecting;//If selecting routine is active
+    public static bool undo;     //If undo is pushed
 
     private bool done;//If the menu has been opened 
 
-    public int currentPiece;//The piece that is selected
+    public static int currentPiece;//The piece that is selected
       
     private GameObject peiceSelectionMenuUI;//The canvas for the pause menu  
 
-    public Piece[][] Pieces;//The pieces array used to tell what's left
+    public static Piece[][] Pieces;//The pieces array used to tell what's left
 
     public GameObject psmFirstButton;//The first button selected in the pause menu
 

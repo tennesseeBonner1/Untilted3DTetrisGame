@@ -11,9 +11,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] Sounds;                  //array of sound objects          
+    public Sound[] Sounds;//array of sound objects          
 
-    public static AudioManager Instance;    //Instance of the manager itself
+    public static AudioManager Instance;//Instance of the manager itself
 
     void Awake()
     {

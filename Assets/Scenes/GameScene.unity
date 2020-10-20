@@ -299,7 +299,8 @@ MonoBehaviour:
     type: 3}
   planePrefab: {fileID: 62984869226125789, guid: e6b95eaba95779d47bc72238691b2a44,
     type: 3}
-  cameraDFC: 10
+  BoardHolder: {fileID: 0}
+  cameraDFC: 6
   rotationShakeDuration: 0.05
   rotationShakeSpeed: 0.2
 --- !u!1 &257118783
@@ -3051,7 +3052,17 @@ PrefabInstance:
     - target: {fileID: 1582332047916277875, guid: 3b91d2460d5653b4da2ccce438de3bc8,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582332047916277875, guid: 3b91d2460d5653b4da2ccce438de3bc8,
+        type: 3}
+      propertyPath: Sounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f0096a380700e9f458dd2712de2c6dc8, type: 3}
+    - target: {fileID: 1582332047916277875, guid: 3b91d2460d5653b4da2ccce438de3bc8,
+        type: 3}
+      propertyPath: Sounds.Array.data[0].volume
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b91d2460d5653b4da2ccce438de3bc8, type: 3}
