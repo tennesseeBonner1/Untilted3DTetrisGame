@@ -11,17 +11,17 @@ using UnityEngine;
 
 public class Rotation : MonoBehaviour
 {
-    public bool Rotating;//If the rotation routine is active
-    public bool undo;    //If undo is pushed
+    public static bool Rotating;//If the rotation routine is active
+    public static bool undo;    //If undo is pushed
 
-    public bool[,,] RotatingMatrix { get; set; } = new bool[5,5,5]; //Hold the 5x5x5 matrix that will be rotated
+    public static bool[,,] RotatingMatrix { get; set; } = new bool[5,5,5]; //Hold the 5x5x5 matrix that will be rotated
 
     private float rotationPressingTimer;       //Timer for the cooldown
     private float rotationPressingTime = 0.15f;//Cooldown for a rotation button being pushed
 
-    public GameObject RotatingObject;//GameObject for the piece rotating
+    public static GameObject RotatingObject;//GameObject for the piece rotating
 
-    public Piece RotatingPiece;//The piece object that will be rotated
+    public static Piece RotatingPiece;//The piece object that will be rotated
 
     public AudioManager AudioMan;//The audionmanager
 
@@ -51,15 +51,13 @@ public class Rotation : MonoBehaviour
     //Activates when rotating is true and exits if either undo or confirm are pushed 
     void Update()
     {
-
-        if (Rotating && !PauseMenu.GameIsPaused)
+        if (Rotating && !PauseMenu.GameIsPaused && (!Selector.selecting))
         {
             rotationPressingTimer -= Time.deltaTime;
 
             //If the timer hasn't been pushed for the specified rotationPressingTime the buttons are unlocked 
             if (rotationPressingTimer <= 0)
             {
-
                 switch (CameraRotator.cameraOrientation)
                 {
                     case (0):
@@ -176,7 +174,7 @@ public class Rotation : MonoBehaviour
     //Confirm rotation
     private void Confirm()
     {
-        if (!PauseMenu.GameIsPaused)
+        if (!PauseMenu.GameIsPaused && (!Selector.selecting))
         {
             if (Rotating)
             {
@@ -184,7 +182,9 @@ public class Rotation : MonoBehaviour
                 {
                     AudioMan.Play("Click");
                     RotatingMatrix = shrinkArray();
+                    postRotation(GameMaster.boardDimensions[0], GameMaster.boardDimensions[2]);
                     Rotating = false;
+                    rotationPressingTimer = rotationPressingTime;
                 }
             }
         }
@@ -193,7 +193,7 @@ public class Rotation : MonoBehaviour
     //Undo move
     private void Undo()
     {
-        if (!PauseMenu.GameIsPaused)
+        if (!PauseMenu.GameIsPaused && (!Selector.selecting))
         {
             if (Rotating)
             {
@@ -201,6 +201,7 @@ public class Rotation : MonoBehaviour
                 {
                     undo = true;
                     Rotating = false;
+                    rotationPressingTimer = rotationPressingTime;
                 }
             }
         }
@@ -209,7 +210,7 @@ public class Rotation : MonoBehaviour
     //Used once confirm is pushed to shrink the 5x5x5 array to a more condensed 4x4x4 representation of the piece(no need for a rotation axis anymore), with the piece on the "floor" or the matirx.
     private bool[,,] shrinkArray()
     {
-        bool[,,] testArray = new bool[4, 4, 4];   
+         
         bool[,,]  returnArray = new bool[4, 4, 4];
         int lowestLayer = 3;                      
 
@@ -264,6 +265,8 @@ public class Rotation : MonoBehaviour
 
         //Esentially scan the 5x5x5 and copy it onto a 4x4x4 matrix
         int scanX = 0, scanY = 0, scanZ = 0;
+
+        bool[,,] testArray = new bool[4, 4, 4];
 
         for (int a = 0; a < 4; a++)
         {
@@ -352,7 +355,7 @@ public class Rotation : MonoBehaviour
     }
 
     //After successful rotation the piece is refit to fit within the very center of a piece as big as the board that the piece will be dropped in 
-    public void postRotation(int xDim, int zDim)
+    public static void postRotation(int xDim, int zDim)
     {
         int xStart = calculatePiecePosition(xDim);  
         int zStart = calculatePiecePosition(zDim);
@@ -379,7 +382,7 @@ public class Rotation : MonoBehaviour
     }
 
     //Determines where the center of the board is 
-    private int calculatePiecePosition(int number)
+    private static int calculatePiecePosition(int number)
     {
         float x = (float)(number - 4);
 

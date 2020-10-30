@@ -11,16 +11,16 @@ using UnityEngine;
 
 public class Translation : MonoBehaviour
 {
-    public bool Translating;//If the translating routine is active
-    public bool undo;       //If the undo routine is active
+    public static bool Translating;//If the translating routine is active
+    public static bool undo;       //If the undo routine is active
 
     private float translatingPressingTimer;       //Timer for the cooldown
     private float translatingPressingTime = 0.12f;//Cooldown for translating
                        
-    public bool[,,] TranslatingMatrix { get; set; } = new bool[4,4,4];//Matrix being translated
-    public bool[,,] BoardMatrix { get; set; } = new bool[4, 4, 4];    //The board the piece will be going on
+    public static bool[,,] TranslatingMatrix { get; set; } = new bool[4,4,4];//Matrix being translated
+    public static bool[,,] BoardMatrix { get; set; } = new bool[4, 4, 4];    //The board the piece will be going on
 
-    public GameObject TranslatingObject;//The piece gameobject being translated
+    public static GameObject TranslatingObject;//The piece gameobject being translated
 
     public AudioManager AudioMan;//The audiomanager
 
@@ -36,7 +36,6 @@ public class Translation : MonoBehaviour
         controls.Gameplay.Confirm.performed += ctx => Confirm();
         controls.Gameplay.Undo.performed += ctx => Undo();
         controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
-
         controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
         Translating = false;
         undo = false;
@@ -48,7 +47,7 @@ public class Translation : MonoBehaviour
     //Activates when translating is true and exits if either undo or confirm are pushed (if confirm results in a successful drop)
     void Update()
     {
-        if (Translating && !PauseMenu.GameIsPaused)
+        if (Translating && !PauseMenu.GameIsPaused && (!Selector.selecting))
         {
             translatingPressingTimer -= Time.deltaTime;
 
@@ -155,7 +154,7 @@ public class Translation : MonoBehaviour
     //If confirm is pushed
     private void Confirm()
     {
-        if (!PauseMenu.GameIsPaused)
+        if (!PauseMenu.GameIsPaused && (!Selector.selecting))
         {
             if (Translating)
             {
@@ -177,7 +176,7 @@ public class Translation : MonoBehaviour
     //If undo is pushed 
     private void Undo()
     {
-        if (!PauseMenu.GameIsPaused)
+        if (!PauseMenu.GameIsPaused && (!Selector.selecting))
         {
             if (Translating)
             {
@@ -225,14 +224,13 @@ public class Translation : MonoBehaviour
         int difference = cbY - 4;
 
         int[,] tempPieceList = {{ 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }};
-
         for (int i = 0; i < 4; i++)
         {
             tempPieceList[i, 0] = pieceList[i, 0] + difference;
             tempPieceList[i, 1] = pieceList[i, 1] + difference;
             tempPieceList[i, 2] = pieceList[i, 2] + difference;
         }
-
+        
         int temp = 0;
         bool works = true;
 

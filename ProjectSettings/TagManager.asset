@@ -19,6 +19,7 @@ TagManager:
   - St Piece
   - T Piece
   - PieceSelection
+  - 1CButton
   layers:
   - Default
   - TransparentFX

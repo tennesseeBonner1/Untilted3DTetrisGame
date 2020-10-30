@@ -1,0 +1,342 @@
+BASKING 1 State board is 
+0 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+Piece: 5
+
+1 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+2 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+3 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+4 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+5 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+6 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+7 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+8 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+9 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+10 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+11 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+12 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+13 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+14 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+15 Board: 
+0:0:0False 0:0:1False 0:0:2False 0:0:3False 
+0:1:0False 0:1:1False 0:1:2False 0:1:3False 
+0:2:0False 0:2:1False 0:2:2False 0:2:3False 
+0:3:0False 0:3:1False 0:3:2False 0:3:3False 
+
+1:0:0False 1:0:1False 1:0:2False 1:0:3False 
+1:1:0False 1:1:1False 1:1:2False 1:1:3False 
+1:2:0False 1:2:1False 1:2:2False 1:2:3False 
+1:3:0False 1:3:1False 1:3:2False 1:3:3False 
+
+2:0:0False 2:0:1False 2:0:2False 2:0:3False 
+2:1:0False 2:1:1True 2:1:2False 2:1:3False 
+2:2:0False 2:2:1True 2:2:2True 2:2:3False 
+2:3:0False 2:3:1False 2:3:2True 2:3:3False 
+
+3:0:0False 3:0:1False 3:0:2False 3:0:3False 
+3:1:0False 3:1:1False 3:1:2False 3:1:3False 
+3:2:0False 3:2:1False 3:2:2False 3:2:3False 
+3:3:0False 3:3:1False 3:3:2False 3:3:3False 
+
+==========================================================================
+
+CurrentPiece: null

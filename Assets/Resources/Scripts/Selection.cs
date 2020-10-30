@@ -7,13 +7,14 @@
 //Used to run a Selection routine for the player to select what piece they want.
 //Public values are controlled in GameMaster to make some buttons unusable in the selection.
 //GameMaster also will use the value determined during the selection routine to use in the game.
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Selection : MonoBehaviour
 {
     public static bool selecting;//If selecting routine is active
-    public static bool undo;     //If undo is pushed
+    public static bool undo;//If undo is pushed
 
     private bool done;//If the menu has been opened 
 
@@ -21,9 +22,8 @@ public class Selection : MonoBehaviour
       
     private GameObject peiceSelectionMenuUI;//The canvas for the pause menu  
 
-    public static Piece[][] Pieces;//The pieces array used to tell what's left
 
-    public GameObject psmFirstButton;//The first button selected in the pause menu
+    private GameObject psmFirstButton;//The first button selected in the pause menu
 
     private PlayerControls controls;//The platercontrols
 
@@ -37,7 +37,7 @@ public class Selection : MonoBehaviour
         done = false;
         undo = false;
 
-        currentPiece = -1;
+        currentPiece = 2;
 
         peiceSelectionMenuUI = GameObject.FindGameObjectWithTag("PieceSelection");
         peiceSelectionMenuUI.SetActive(false);
@@ -48,6 +48,33 @@ public class Selection : MonoBehaviour
     {
         if (!PauseMenu.GameIsPaused)
         {
+            switch (currentPiece)
+            {
+                case (0):
+                    psmFirstButton = peiceSelectionMenuUI.transform.Find("1CButton").gameObject;
+                    break;
+                case (1):
+                    psmFirstButton = peiceSelectionMenuUI.transform.Find("4CButton").gameObject;
+                    break;
+                case (2):
+                    psmFirstButton = peiceSelectionMenuUI.transform.Find("IButton").gameObject;
+                    break;
+                case (3):
+                    psmFirstButton = peiceSelectionMenuUI.transform.Find("LButton").gameObject;
+                    break;
+                case (4):
+                    psmFirstButton = peiceSelectionMenuUI.transform.Find("OButton").gameObject;
+                    break;
+                case (5):
+                    psmFirstButton = peiceSelectionMenuUI.transform.Find("SButton").gameObject;
+                    break;
+                case (6):
+                    psmFirstButton = peiceSelectionMenuUI.transform.Find("StButton").gameObject;
+                    break;
+                case (7):
+                    psmFirstButton = peiceSelectionMenuUI.transform.Find("TButton").gameObject;
+                    break;
+            }
             if (selecting && !done)
             {
                 peiceSelectionMenuUI.SetActive(true);
@@ -55,7 +82,6 @@ public class Selection : MonoBehaviour
 
                 EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(psmFirstButton);
-
                 done = true;
             }
         }
@@ -85,9 +111,7 @@ public class Selection : MonoBehaviour
     //All the possible buttons for pieces that can be selected
     public void On1CButton()
     {
-        if (Pieces[0].Length < 1)
-            return;
-        if (Pieces[0][0] == null)
+        if (GameMaster.pieceCount[0] == 0)
             return;
 
         currentPiece = 0;
@@ -100,9 +124,7 @@ public class Selection : MonoBehaviour
     }
     public void On4CButton()
     {
-        if (Pieces[1].Length < 1)
-            return;
-        if (Pieces[1][0] == null)
+        if (GameMaster.pieceCount[1] == 0)
             return;
 
         currentPiece = 1;
@@ -115,9 +137,7 @@ public class Selection : MonoBehaviour
     }
     public void IButton()
     {
-        if (Pieces[2].Length < 1)
-            return;
-        if (Pieces[2][0] == null)
+        if (GameMaster.pieceCount[2] == 0)
             return;
 
         currentPiece = 2;
@@ -130,9 +150,7 @@ public class Selection : MonoBehaviour
     }
     public void LButton()
     {
-        if (Pieces[3].Length < 1)
-            return;
-        if (Pieces[3][0] == null)
+        if (GameMaster.pieceCount[3] == 0)
             return;
 
         currentPiece = 3;
@@ -145,9 +163,7 @@ public class Selection : MonoBehaviour
     }
     public void OButton()
     {
-        if (Pieces[4].Length < 1)
-            return;
-        if (Pieces[4][0] == null)
+        if (GameMaster.pieceCount[4] == 0)
             return;
 
         currentPiece = 4;
@@ -160,10 +176,9 @@ public class Selection : MonoBehaviour
     }
     public void SButton()
     {
-        if (Pieces[5].Length < 1)
+        if (GameMaster.pieceCount[5] == 0)
             return;
-        if (Pieces[5][0] == null)
-            return;
+
         currentPiece = 5;
 
         peiceSelectionMenuUI.SetActive(false);
@@ -174,9 +189,7 @@ public class Selection : MonoBehaviour
     }
     public void StButton()
     {
-        if (Pieces[6].Length < 1)
-            return;
-        if (Pieces[6][0] == null)
+        if (GameMaster.pieceCount[6] == 0)
             return;
 
         currentPiece = 6;
@@ -189,9 +202,7 @@ public class Selection : MonoBehaviour
     }
     public void TButton()
     {
-        if (Pieces[7].Length < 1)
-            return;
-        if (Pieces[7][0] == null)
+        if (GameMaster.pieceCount[7] == 0)
             return;
 
         currentPiece = 7;
@@ -213,4 +224,5 @@ public class Selection : MonoBehaviour
     {
         controls.Gameplay.Disable();
     }
+
 }

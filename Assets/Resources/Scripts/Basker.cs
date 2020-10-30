@@ -14,9 +14,9 @@ using UnityEngine.InputSystem;
 
 public class Basker : MonoBehaviour
 {
-    public bool basking;    //If the basking state is active 
-    public bool undo;       //If undo is pushed
-    public bool undoable;   //If basking is undoable(not turn 0)
+    public static bool basking;    //If the basking state is active 
+    public static bool undo;       //If undo is pushed
+    public static bool undoable;   //If basking is undoable(not turn 0)
 
     private PlayerControls controls; //The PlayerControls 
 
@@ -26,6 +26,7 @@ public class Basker : MonoBehaviour
         controls = new PlayerControls();
         controls.Gameplay.Confirm.performed += ctx => Confirm();
         controls.Gameplay.Undo.performed += ctx => Undo();
+
         basking = false;
         undo = false;
         undoable = false;
@@ -35,15 +36,17 @@ public class Basker : MonoBehaviour
     void Confirm()
     {
         //Only works if Game is not paused
-        if (!PauseMenu.GameIsPaused)
+        if ((!PauseMenu.GameIsPaused) && (!Selector.selecting))
             if (basking)
+            {
                 basking = false;
+            }
     }
 
     //If Undo is pushed
     void Undo()
     {
-        if (!PauseMenu.GameIsPaused)
+        if (!PauseMenu.GameIsPaused && (!Selector.selecting))
         {
             if (basking)
                 if (undoable)

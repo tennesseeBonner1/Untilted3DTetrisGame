@@ -31,7 +31,6 @@ public class Setup : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
     
-
     //Returns the number of pieces
     public static int getCount()
     {

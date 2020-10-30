@@ -24,6 +24,9 @@ public class MainMenu : MonoBehaviour
     public GameObject optsFirstButton;//The first selected button in the options menu 
     public GameObject mLFirstButton;  //The first selected button in the make level menu 
 
+    public static int[] startBoard = { 4, 4, 4 };
+    public static int[] pieces = { 1, 0, 2, 5, 1, 2, 2, 3 };
+
     //Get the level loader and set the right menu active
     void Awake()
     {
@@ -58,6 +61,12 @@ public class MainMenu : MonoBehaviour
         mM.SetActive(false);
         opts.SetActive(false);
         mL.SetActive(false);
+
+        for (int i = 0; i < 3; i++)
+            Setup.startBoard[i] = startBoard[i];
+
+        for (int i = 0; i < 8; i++)
+            Setup.pieces[i] = pieces[i];
 
         LevelLoader ll = destroyerOfWorlds.GetComponent<LevelLoader>();
         ll.LoadNextLevel();

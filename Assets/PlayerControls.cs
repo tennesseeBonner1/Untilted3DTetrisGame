@@ -65,6 +65,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""24424f58-cdbc-4a91-bfa0-008a80e45796"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -287,6 +295,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2536da71-0f50-4788-9b24-bfb4aa838649"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b27598e6-9a7e-414c-99e7-ecf3aa7d7e77"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -301,6 +331,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Gameplay_Rotate = m_Gameplay.FindAction("Rotate", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         m_Gameplay_SnapCam = m_Gameplay.FindAction("SnapCam", throwIfNotFound: true);
+        m_Gameplay_Select = m_Gameplay.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -356,6 +387,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Rotate;
     private readonly InputAction m_Gameplay_Pause;
     private readonly InputAction m_Gameplay_SnapCam;
+    private readonly InputAction m_Gameplay_Select;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -366,6 +398,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Rotate => m_Wrapper.m_Gameplay_Rotate;
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputAction @SnapCam => m_Wrapper.m_Gameplay_SnapCam;
+        public InputAction @Select => m_Wrapper.m_Gameplay_Select;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -393,6 +426,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @SnapCam.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSnapCam;
                 @SnapCam.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSnapCam;
                 @SnapCam.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSnapCam;
+                @Select.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSelect;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -415,6 +451,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @SnapCam.started += instance.OnSnapCam;
                 @SnapCam.performed += instance.OnSnapCam;
                 @SnapCam.canceled += instance.OnSnapCam;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
             }
         }
     }
@@ -427,5 +466,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnRotate(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnSnapCam(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }

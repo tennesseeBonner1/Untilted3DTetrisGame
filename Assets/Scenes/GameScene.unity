@@ -580,9 +580,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2316108da7873e34d9f821a92729072b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rotating: 0
-  undo: 0
-  RotatingObject: {fileID: 0}
   AudioMan: {fileID: 0}
 --- !u!4 &438206698
 Transform:
@@ -681,17 +678,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 551535780}
         m_MethodName: OButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectionTutorialDone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -924,13 +910,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 551535779}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61e336411ecaf5b4999854b40ead1092, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c0b7b5e1eeceaf4ab2d9bf5c9aef57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selecting: 0
-  undo: 0
-  currentPiece: 0
-  psmFirstButton: {fileID: 1554099522}
 --- !u!4 &551535781
 Transform:
   m_ObjectHideFlags: 0
@@ -1037,17 +1019,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectionTutorialDone
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &590899308
@@ -1117,9 +1088,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2aa6e2152a81b549b5bb6dab8da4e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Translating: 0
-  undo: 0
-  TranslatingObject: {fileID: 0}
   AudioMan: {fileID: 0}
 --- !u!4 &686861505
 Transform:
@@ -1207,9 +1175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0fe7ae4d9d3fff45811a024039fda7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basking: 0
-  undo: 0
-  undoable: 0
 --- !u!4 &701769678
 Transform:
   m_ObjectHideFlags: 0
@@ -1297,7 +1262,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.20703125, y: 0.08203125, z: 0.015625, w: -0.08203125}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1540,17 +1505,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectionTutorialDone
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1167360817
@@ -1591,6 +1545,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167360814}
   m_CullTransparentMesh: 0
+--- !u!1001 &1171863581
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7095624772290658472, guid: 05164ef7cf615694fbdb68b9f29f8144,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095624772290658471, guid: 05164ef7cf615694fbdb68b9f29f8144,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1185
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095624772290658471, guid: 05164ef7cf615694fbdb68b9f29f8144,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 625
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095624772290658471, guid: 05164ef7cf615694fbdb68b9f29f8144,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095624772290658471, guid: 05164ef7cf615694fbdb68b9f29f8144,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095624772290658471, guid: 05164ef7cf615694fbdb68b9f29f8144,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095624772290658471, guid: 05164ef7cf615694fbdb68b9f29f8144,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095624772290658471, guid: 05164ef7cf615694fbdb68b9f29f8144,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095624772290658471, guid: 05164ef7cf615694fbdb68b9f29f8144,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095624772290658471, guid: 05164ef7cf615694fbdb68b9f29f8144,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095624772290658471, guid: 05164ef7cf615694fbdb68b9f29f8144,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095624772290658471, guid: 05164ef7cf615694fbdb68b9f29f8144,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 05164ef7cf615694fbdb68b9f29f8144, type: 3}
 --- !u!1 &1316403666
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,17 +1839,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectionTutorialDone
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1427900942
@@ -1896,8 +1908,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad2a1d3a59f3b446ba383618632cb74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationPosition: {fileID: 147775003}
   AudioMan: {fileID: 0}
+  RotationPosition: {fileID: 147775003}
 --- !u!4 &1465620592
 Transform:
   m_ObjectHideFlags: 0
@@ -1926,7 +1938,7 @@ GameObject:
   - component: {fileID: 1554099524}
   m_Layer: 5
   m_Name: 1CButton
-  m_TagString: Untagged
+  m_TagString: 1CButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1995,17 +2007,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 551535780}
         m_MethodName: On1CButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectionTutorialDone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2147,17 +2148,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectionTutorialDone
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1583866986
@@ -2281,17 +2271,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 551535780}
         m_MethodName: IButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectionTutorialDone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2557,17 +2536,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 551535780}
         m_MethodName: LButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectionTutorialDone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3052,7 +3020,7 @@ PrefabInstance:
     - target: {fileID: 1582332047916277875, guid: 3b91d2460d5653b4da2ccce438de3bc8,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1582332047916277875, guid: 3b91d2460d5653b4da2ccce438de3bc8,
         type: 3}
@@ -3066,77 +3034,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b91d2460d5653b4da2ccce438de3bc8, type: 3}
---- !u!1001 &7114055152198669160
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7114055153406548783, guid: b42d94efb056af246b5e04fc30ef195b,
-        type: 3}
-      propertyPath: m_Name
-      value: LevelLoader
-      objectReference: {fileID: 0}
-    - target: {fileID: 7114055153406548783, guid: b42d94efb056af246b5e04fc30ef195b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7114055153406548768, guid: b42d94efb056af246b5e04fc30ef195b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7114055153406548768, guid: b42d94efb056af246b5e04fc30ef195b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7114055153406548768, guid: b42d94efb056af246b5e04fc30ef195b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7114055153406548768, guid: b42d94efb056af246b5e04fc30ef195b,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7114055153406548768, guid: b42d94efb056af246b5e04fc30ef195b,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7114055153406548768, guid: b42d94efb056af246b5e04fc30ef195b,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7114055153406548768, guid: b42d94efb056af246b5e04fc30ef195b,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7114055153406548768, guid: b42d94efb056af246b5e04fc30ef195b,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7114055153406548768, guid: b42d94efb056af246b5e04fc30ef195b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7114055153406548768, guid: b42d94efb056af246b5e04fc30ef195b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7114055153406548768, guid: b42d94efb056af246b5e04fc30ef195b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b42d94efb056af246b5e04fc30ef195b, type: 3}

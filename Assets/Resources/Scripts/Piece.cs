@@ -13,7 +13,6 @@ public class Piece
     private bool[,,] originalMatrix = new bool[5, 5, 5];//The initial 5x5x5 representation of the piece
     private bool[,,] rotatingMatrix = new bool[5, 5, 5];//The matrix during rotation       
     private bool[,,] translatingMatrix = null;          //The matrix during translation        
-
     
     private int shape;//The shape of the piece
 
@@ -357,5 +356,4 @@ public class Piece
             center = value;
         }
     }
-    
 }

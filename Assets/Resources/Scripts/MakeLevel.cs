@@ -21,6 +21,14 @@ public class MakeLevel : MonoBehaviour
     public Text stText;
     public Text tText;
 
+    private GameObject destroyerOfWorlds;//The level loader
+
+    private void Awake()
+    {
+        destroyerOfWorlds = new GameObject();
+        destroyerOfWorlds = GameObject.Find("LevelLoader");
+    }
+
     private void Update()
     {
         xText.text = startBoard[0].ToString();
@@ -160,5 +168,8 @@ public class MakeLevel : MonoBehaviour
 
         for (int i = 0; i < 8; i++)
             Setup.pieces[i] = pieces[i];
+
+        LevelLoader ll = destroyerOfWorlds.GetComponent<LevelLoader>();
+        ll.LoadNextLevel();
     }
 }
