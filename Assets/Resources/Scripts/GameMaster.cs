@@ -106,7 +106,6 @@ public class GameMaster : MonoBehaviour
 
         if(!Selector.selecting && Selector.reset)
         {
-            Debug.Log("RESET");
             UndoPiece();
         }
     }
@@ -116,7 +115,6 @@ public class GameMaster : MonoBehaviour
 
     IEnumerator Basking()
     {
-        Debug.Log("Basking Started");
         testing();
 
         //Setup and start Basking routine
@@ -244,7 +242,6 @@ public class GameMaster : MonoBehaviour
 
     IEnumerator Rotating()
     {
-        Debug.Log("Rotating Started");
         //Setup and start Rotation routine
         bool[,,] rotatingMatrix = CurrentPiece.RotatingMatrix;
         Rotation.RotatingMatrix = rotatingMatrix.Clone() as bool[,,];
@@ -266,6 +263,12 @@ public class GameMaster : MonoBehaviour
 
             //Move GameObject
             PieceGameOb[currentTurn].transform.position = CurrentPiece.Center;
+
+
+            PieceGameOb[currentTurn].gameObject.layer = LayerMask.NameToLayer("Default");
+
+            foreach (Transform child in PieceGameOb[currentTurn].transform)
+                child.gameObject.layer = LayerMask.NameToLayer("Default");
 
             //Get rotating and translating matricies
             CurrentPiece.RotatingMatrix = rotatingMatrix.Clone() as bool[,,];
@@ -289,7 +292,6 @@ public class GameMaster : MonoBehaviour
 
         //Play undo sound effect 
         AudioMan.Play("Undo");
-
         //Reset all values at begining of rotation routine
         Rotation.RotatingMatrix = null;
         Rotation.RotatingObject = null;
@@ -308,7 +310,6 @@ public class GameMaster : MonoBehaviour
 
     IEnumerator Translating()
     {
-        Debug.Log("Translating Started");
         testing();
         //Setup and start translation routine
         bool[,,] translatingMatrix = CurrentPiece.TranslatingMatrix;
@@ -381,6 +382,12 @@ public class GameMaster : MonoBehaviour
         Translation.BoardMatrix = null;
         Translation.TranslatingObject = null;
         Translation.Translating = false;
+
+
+        PieceGameOb[currentTurn].gameObject.layer = LayerMask.NameToLayer("RotatingPosition");
+
+        foreach (Transform child in PieceGameOb[currentTurn].transform)
+            child.gameObject.layer = LayerMask.NameToLayer("RotatingPosition");
 
         //Reset undo for translation
         Translation.undo = false;

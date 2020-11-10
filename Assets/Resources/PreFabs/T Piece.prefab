@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33266272507735212}
   - component: {fileID: 23951331406691548}
   - component: {fileID: 65985566838480854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Baby Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4330969838869972}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: T Piece
   m_TagString: T Piece
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 33130729504748820}
   - component: {fileID: 23348387258765858}
   - component: {fileID: 65942618902614786}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Baby Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 33238633661996964}
   - component: {fileID: 23829093843205236}
   - component: {fileID: 65286610627876204}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Baby Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 3719951182321329643}
   - component: {fileID: 5038121352720838164}
   - component: {fileID: 1166554060464103596}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: T Piece
   m_TagString: Untagged
   m_Icon: {fileID: 0}

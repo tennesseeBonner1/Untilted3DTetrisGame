@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33738105925083232}
   - component: {fileID: 23330350803902416}
   - component: {fileID: 65708724559018966}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Teal Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,10 +27,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237972880356764}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4900186235979128}
+  m_Father: {fileID: 4230432364747218}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33738105925083232
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 33842498444884534}
   - component: {fileID: 23530456647540112}
   - component: {fileID: 65810617102498970}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Teal Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,10 +119,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264189394187184}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 1}
+  m_LocalPosition: {x: -0.5, y: 0.5, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4900186235979128}
+  m_Father: {fileID: 4230432364747218}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33842498444884534
@@ -193,7 +193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4230432364747218}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: St Piece
   m_TagString: St Piece
   m_Icon: {fileID: 0}
@@ -211,6 +211,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4059705561005138}
+  - {fileID: 4584457560753152}
+  - {fileID: 4355532242317014}
   - {fileID: 4900186235979128}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -227,7 +230,7 @@ GameObject:
   - component: {fileID: 33190249971384566}
   - component: {fileID: 23777984460514200}
   - component: {fileID: 65183323914166496}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Teal Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,10 +245,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521971981632760}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: -0.5, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4900186235979128}
+  m_Father: {fileID: 4230432364747218}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33190249971384566
@@ -319,7 +322,7 @@ GameObject:
   - component: {fileID: 33607850917836968}
   - component: {fileID: 23299703783009362}
   - component: {fileID: 65286455828205142}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: St Piece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,12 +339,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5, y: -0.5, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4059705561005138}
-  - {fileID: 4584457560753152}
-  - {fileID: 4355532242317014}
+  m_Children: []
   m_Father: {fileID: 4230432364747218}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33607850917836968
 MeshFilter:

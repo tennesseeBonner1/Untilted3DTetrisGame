@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33528923716067866}
   - component: {fileID: 23974684610079938}
   - component: {fileID: 65583632419941778}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1c Piece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,12 +29,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5, y: -0.5, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4128161908705712}
-  - {fileID: 4059645817040170}
-  - {fileID: 4533771123029276}
+  m_Children: []
   m_Father: {fileID: 4759193642975292}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33528923716067866
 MeshFilter:
@@ -107,7 +104,7 @@ GameObject:
   - component: {fileID: 33633378124771344}
   - component: {fileID: 23837846394875540}
   - component: {fileID: 65087813719132888}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pink Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,10 +119,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276088382104626}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4949472041749922}
+  m_Father: {fileID: 4759193642975292}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33633378124771344
@@ -199,7 +196,7 @@ GameObject:
   - component: {fileID: 33169632291093210}
   - component: {fileID: 23287542063675478}
   - component: {fileID: 65461488018919558}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pink Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,10 +211,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559008445674718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: -0.5, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4949472041749922}
+  m_Father: {fileID: 4759193642975292}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33169632291093210
@@ -288,7 +285,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4759193642975292}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1c Piece
   m_TagString: 1C Piece
   m_Icon: {fileID: 0}
@@ -306,6 +303,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4128161908705712}
+  - {fileID: 4059645817040170}
+  - {fileID: 4533771123029276}
   - {fileID: 4949472041749922}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 33151773367601312}
   - component: {fileID: 23056406509414676}
   - component: {fileID: 65019574534022056}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pink Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,10 +337,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572914967573196}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: -0.5, y: -0.5, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4949472041749922}
+  m_Father: {fileID: 4759193642975292}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33151773367601312

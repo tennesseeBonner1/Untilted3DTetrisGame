@@ -47,7 +47,8 @@ public class MakeLevel : MonoBehaviour
 
     public void increaseX()
     {
-        startBoard[0] += 1;
+        if (startBoard[0] < 20)
+            startBoard[0] += 1;
     }
 
     public void decreaseX()
@@ -58,7 +59,8 @@ public class MakeLevel : MonoBehaviour
 
     public void increaseY()
     {
-        startBoard[1] += 1;
+        if (startBoard[1] < 20)
+            startBoard[1] += 1;
     }
 
     public void decreaseY()

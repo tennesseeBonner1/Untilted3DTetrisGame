@@ -5,6 +5,7 @@
 //
 //CameraRotator.cs
 //Seperate control specifically to turn the board
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,10 +17,12 @@ public class CameraRotator : MonoBehaviour
     private Vector2 rotate; //Only a 2D vector is needed since we only rotate left and right(for now)
 
     public GameObject cameraPrefab;
+    public GameObject rotationCameraPrefab;
     public GameObject planePrefab;
     public GameObject BoardHolder;
 
     private GameObject[] camera;
+    private GameObject[] rotationCamera;
     private GameObject CameraHolder;
 
     public int cameraDFC = 5;
@@ -32,10 +35,15 @@ public class CameraRotator : MonoBehaviour
     private float cameraTiltTimer;
     private float cameraTiltTime = 0.3f;
 
-    public float rotationShakeDuration = 1f;
-    public float rotationShakeSpeed = 1f;
+    public float tiltDuration = .5f;
+    public float tiltSpeed = .2f;
 
     public static int cameraOrientation;
+
+    private bool tilting = false;
+
+    public float tiltTrigger = 0.3f;
+
 
     //Gets the controls
     void Awake()
@@ -61,58 +69,83 @@ public class CameraRotator : MonoBehaviour
     void CreateCameras()
     {
         //Get the dimensions of the board, divide those numbers, then take the minimum of the two
-        int xDist = Setup.startBoard[0] / 2;
-        int zDist = Setup.startBoard[2] / 2;
+        int xDist = Setup.startBoard[0];
+        int yDist = Setup.startBoard[1];
+        int zDist = Setup.startBoard[2];
 
-        int minDist = xDist;
+        int maxDist = xDist;
 
-        if (zDist < xDist)
-            minDist = zDist;
+        if (zDist > xDist && zDist > yDist)
+            maxDist = zDist;
 
-        //Add the camera distance from center
-        minDist += cameraDFC;
+        if (yDist > xDist && yDist > zDist)
+            maxDist = yDist;
 
-        //Calculate 1, 1/2, and sqrt(3)/2 for the UNIT circle
-        float wholeDist = (float)minDist;
-        float halfDist = wholeDist / 2f;
-        float almstWhleDist = wholeDist * 0.86602540378f;
+        cameraDFC *= maxDist;
+
+        float rtTwOvTwo = (Mathf.Sqrt(2f)) / 2f;
+        float largeEdge = (float)cameraDFC;
+        float smallEdge = rtTwOvTwo * largeEdge;
 
         //Create the cameras, correct their positions, then activate camera[0]
-        camera = new GameObject[12];
+        camera = new GameObject[4];
         
-        camera[0] = Instantiate(cameraPrefab, new Vector3(0, wholeDist, -wholeDist), Quaternion.Euler(45, 0, 0)) as GameObject;
-        camera[1] = Instantiate(cameraPrefab, new Vector3(halfDist, wholeDist, -almstWhleDist), Quaternion.Euler(45, -30, 0)) as GameObject;
-        camera[2] = Instantiate(cameraPrefab, new Vector3(almstWhleDist, wholeDist, -halfDist), Quaternion.Euler(45, -60, 0)) as GameObject;
-        camera[3] = Instantiate(cameraPrefab, new Vector3(wholeDist, wholeDist, 0), Quaternion.Euler(45, -90, 0)) as GameObject;
-        camera[4] = Instantiate(cameraPrefab, new Vector3(almstWhleDist, wholeDist, halfDist), Quaternion.Euler(45, -120, 0)) as GameObject;
-        camera[5] = Instantiate(cameraPrefab, new Vector3(halfDist, wholeDist, almstWhleDist), Quaternion.Euler(45, -150, 0)) as GameObject;
-        camera[6] = Instantiate(cameraPrefab, new Vector3(0, wholeDist, wholeDist), Quaternion.Euler(45, -180, 0)) as GameObject;
-        camera[7] = Instantiate(cameraPrefab, new Vector3(-halfDist, wholeDist, almstWhleDist), Quaternion.Euler(45, 150, 0)) as GameObject;
-        camera[8] = Instantiate(cameraPrefab, new Vector3(-almstWhleDist, wholeDist, halfDist), Quaternion.Euler(45, 120, 0)) as GameObject;
-        camera[9] = Instantiate(cameraPrefab, new Vector3(-wholeDist, wholeDist, 0), Quaternion.Euler(45, 90, 0)) as GameObject;
-        camera[10] = Instantiate(cameraPrefab, new Vector3(-almstWhleDist, wholeDist, -halfDist), Quaternion.Euler(45, 60, 0)) as GameObject;
-        camera[11] = Instantiate(cameraPrefab, new Vector3(-halfDist, wholeDist, -almstWhleDist), Quaternion.Euler(45, 30, 0)) as GameObject;
+        camera[0] = Instantiate(cameraPrefab, new Vector3(smallEdge, 3 * maxDist, -smallEdge), Quaternion.Euler(35.264f, -45, 0)) as GameObject;
+        camera[1] = Instantiate(cameraPrefab, new Vector3(smallEdge, 3 * maxDist, smallEdge), Quaternion.Euler(35.264f, -135, 0)) as GameObject;
+        camera[2] = Instantiate(cameraPrefab, new Vector3(-smallEdge, 3 * maxDist, smallEdge), Quaternion.Euler(35.264f, 135, 0)) as GameObject;
+        camera[3] = Instantiate(cameraPrefab, new Vector3(-smallEdge, 3 * maxDist, -smallEdge), Quaternion.Euler(35.264f, 45, 0)) as GameObject;
 
-        camera[0].GetComponent<Camera>().enabled = false;
+        camera[0].GetComponent<Camera>().enabled = true;
         camera[1].GetComponent<Camera>().enabled = false;
-        camera[2].GetComponent<Camera>().enabled = true;
+        camera[2].GetComponent<Camera>().enabled = false;
         camera[3].GetComponent<Camera>().enabled = false;
-        camera[4].GetComponent<Camera>().enabled = false;
-        camera[5].GetComponent<Camera>().enabled = false;
-        camera[6].GetComponent<Camera>().enabled = false;
-        camera[7].GetComponent<Camera>().enabled = false;
-        camera[8].GetComponent<Camera>().enabled = false;
-        camera[9].GetComponent<Camera>().enabled = false;
-        camera[10].GetComponent<Camera>().enabled = false;
-        camera[11].GetComponent<Camera>().enabled = false;
 
-        for (int i = 0; i < 12; i++)
+        camera[0].GetComponent<Camera>().orthographicSize = maxDist + 2;
+        camera[1].GetComponent<Camera>().orthographicSize = maxDist + 2;
+        camera[2].GetComponent<Camera>().orthographicSize = maxDist + 2;
+        camera[3].GetComponent<Camera>().orthographicSize = maxDist + 2;
+
+        for (int i = 0; i < 4; i++)
         {
             camera[i].name = "Camera " + i;
             camera[i].transform.SetParent(CameraHolder.transform);
         }
+        //Adjust center position for odd values 
+        if (xDist % 2 != 0)
+        {
+            if (xDist % 4 == 1)
+                CameraHolder.transform.Translate(.5f, 0, 0);
+            else
+                CameraHolder.transform.Translate(-.5f, 0, 0);
+        }
+        if (zDist % 2 != 0)
+        {
+            if (zDist % 4 == 1)
+                CameraHolder.transform.Translate(0, 0, .5f);
+            
+            else
+                CameraHolder.transform.Translate(0, 0, -.5f);
+        }
 
-        cameraVal = 2;
+        rotationCamera = new GameObject[4];
+
+        rotationCamera[0] = Instantiate(rotationCameraPrefab, new Vector3(rtTwOvTwo * 5, 5, -rtTwOvTwo * 5), Quaternion.Euler(35.264f, -45, 0)) as GameObject;
+        rotationCamera[1] = Instantiate(rotationCameraPrefab, new Vector3(rtTwOvTwo * 5, 5, rtTwOvTwo * 5), Quaternion.Euler(35.264f, -135, 0)) as GameObject;
+        rotationCamera[2] = Instantiate(rotationCameraPrefab, new Vector3(-rtTwOvTwo * 5, 5, rtTwOvTwo * 5), Quaternion.Euler(35.264f, 135, 0)) as GameObject;
+        rotationCamera[3] = Instantiate(rotationCameraPrefab, new Vector3(-rtTwOvTwo * 5, 5, -rtTwOvTwo * 5), Quaternion.Euler(35.264f, 45, 0)) as GameObject;
+
+        rotationCamera[0].GetComponent<Camera>().enabled = true;
+        rotationCamera[1].GetComponent<Camera>().enabled = false;
+        rotationCamera[2].GetComponent<Camera>().enabled = false;
+        rotationCamera[3].GetComponent<Camera>().enabled = false;
+
+        for (int i = 0; i < 4; i++)
+        {
+            rotationCamera[i].name = "RotationCamera " + i;
+            rotationCamera[i].transform.SetParent(CameraHolder.transform);
+        }
+
+        cameraVal = 0;
     }
 
     void CreateBoard()
@@ -122,25 +155,19 @@ public class CameraRotator : MonoBehaviour
         int bsZ = Setup.startBoard[2];
 
         float startXPos = -Mathf.Round((bsX / (float)2.0));
-        float startZPos = (float)(bsZ/2);
+        float startZPos = -Mathf.Round((bsZ / (float)2.0));
 
         startXPos += .5f;
-        startZPos -= .5f;
-        for (int i = 0; i < 2; i++)
-        {
-            for (int x = 0; x < bsX; x++)
-            {
-                for (int z = 0; z < bsZ; z++)
-                {
-                    Instantiate(planePrefab, new Vector3(startXPos + x, -0.5f, startZPos - z), Quaternion.identity).transform.SetParent(BoardHolder.transform);
-                }
-            }
-            /*
-            for (int x = 0; x < bsX; x++)
-                for (int z = 0; z < bsZ; z++)
-                    Instantiate(planePrefab, new Vector3(startXPos + x, (-bsY  - 0.5f), startZPos - z), Quaternion.identity);
-            */
-        }
+        startZPos += .5f;
+
+        for (int x = 0; x < bsX; x++)
+            for (int z = 0; z < bsZ; z++)
+                Instantiate(planePrefab, new Vector3(startXPos + x, -0.5f, startZPos + z), Quaternion.identity).transform.SetParent(BoardHolder.transform);
+                
+        for (int x = 0; x < bsX; x++)
+            for (int z = 0; z < bsZ; z++)
+                Instantiate(planePrefab, new Vector3(startXPos + x, (-(bsY + 0.5f)), startZPos + z), Quaternion.identity).transform.SetParent(BoardHolder.transform);
+
     }
     //Checks if rotate is being modified
     void Update()
@@ -164,10 +191,11 @@ public class CameraRotator : MonoBehaviour
             }
         }
 
-        cameraTiltTimer -= Time.deltaTime;
-        if (cameraTiltTimer <= 0)
+
+        if (rotate.y > tiltTrigger || rotate.y < -tiltTrigger)
         {
-            if (rotate.y > 0.3 || rotate.y < -0.3)
+            cameraTiltTimer -= Time.deltaTime;
+            if (cameraTiltTimer <= 0)
             {
                 if (rotate.y > 0)
                 {
@@ -182,171 +210,172 @@ public class CameraRotator : MonoBehaviour
                     //Debug.Log("PushD");
                 }
             }
-            else
+        }
+        else
+        {
+            if (tilting)
             {
-                //Debug.Log("DROP");
+                StopCoroutine(UpTurn());
+                StopCoroutine(DownTurn());
+
+                CameraHolder.transform.eulerAngles = new Vector3(0, 0, 0);
+
+                tilting = false;
+
             }
         }
+        
     }
     void SnapCamera()
     {
-        cameraVal = 0;
-        ChangeCamera();
+        if (!tilting)
+        {
+            cameraVal = 0;
+            ChangeCamera();
+        }
     }
 
     void TiltCamera(bool direction)
     {
-        //For peaking up and down
+        if (!tilting)
+        {
+            tilting = true;
+            //For peaking up and down
+            if (direction)
+            {
+                StartCoroutine(UpTurn());
+            }
+            else
+            {
+                StartCoroutine(DownTurn());
+            }
+        }
     }
 
     void TurnCamera(bool direction)
     {
-        if (direction)
+        if (!tilting)
         {
-            cameraVal += 1;
+            if (direction)
+            {
+                cameraVal += 1;
 
-            if (cameraVal > 11)
-                cameraVal = 0;
+                if (cameraVal > 3)
+                    cameraVal = 0;
+            }
+            else
+            {
+                cameraVal -= 1;
 
-            StartCoroutine(RightTurn());
+                if (cameraVal < 0)
+                    cameraVal = 3;
+            }
+            ChangeCamera();
         }
-        else
-        {
-            cameraVal -= 1;
-
-            if (cameraVal < 0)
-                cameraVal = 11;
-
-            StartCoroutine(LeftTurn());
-        }
-        ChangeCamera();
     }
 
-    IEnumerator RightTurn()
+    IEnumerator UpTurn()
     {
-        Vector3[] camPos = new Vector3[12];
-
-        for (int i = 0; i < 12; i++)
-            camPos[i] = camera[i].transform.eulerAngles;
-
         float elapsed = 0.0f;
 
-        while (elapsed < rotationShakeDuration)
+        while (elapsed < tiltDuration)
         {
-            for (int i = 0; i < 12; i++)
-                camera[i].transform.Rotate(Vector3.up * rotationShakeSpeed, Space.World);
+            if (tilting)
+                switch (cameraVal)
+                {
+                    case (0):
+                        CameraHolder.transform.Rotate(Vector3.right * tiltSpeed, Space.Self);
+                        CameraHolder.transform.Rotate(Vector3.forward * tiltSpeed, Space.Self);
+                        break;
+                    case (1):
+                        CameraHolder.transform.Rotate(Vector3.left * tiltSpeed, Space.Self);
+                        CameraHolder.transform.Rotate(Vector3.forward * tiltSpeed, Space.Self);
+                        break;
+                    case (2):
+                        CameraHolder.transform.Rotate(Vector3.left * tiltSpeed, Space.Self);
+                        CameraHolder.transform.Rotate(Vector3.back * tiltSpeed, Space.Self);
+                        break;
+                    case (3):
+                        CameraHolder.transform.Rotate(Vector3.right * tiltSpeed, Space.Self);
+                        CameraHolder.transform.Rotate(Vector3.back * tiltSpeed, Space.Self);
+                        break;
+                }
 
             elapsed += Time.deltaTime;
 
             yield return null;
         }
-
-        elapsed = 0.0f;
-
-        while (elapsed < (rotationShakeDuration*.5f))
-        {
-            for (int i = 0; i < 12; i++)
-                camera[i].transform.Rotate(Vector3.down * rotationShakeSpeed, Space.World);
-
-            elapsed += Time.deltaTime;
-
-            yield return null;
-        }
-
-        for (int i = 0; i < 12; i++)
-            camera[i].transform.eulerAngles = camPos[i];
     }
 
-    IEnumerator LeftTurn()
+    IEnumerator DownTurn()
     {
-        Vector3[] camPos = new Vector3[12];
-
-        for (int i = 0; i < 12; i++)
-            camPos[i] = camera[i].transform.eulerAngles;
-
         float elapsed = 0.0f;
 
-        while (elapsed < rotationShakeDuration)
+        while (elapsed < tiltDuration)
         {
-            for (int i = 0; i < 12; i++)
-                camera[i].transform.Rotate(Vector3.down * rotationShakeSpeed, Space.World);
+            if(tilting)
+                switch (cameraVal)
+                {
+                    case (0):
+                        CameraHolder.transform.Rotate(Vector3.left * tiltSpeed, Space.Self);
+                        CameraHolder.transform.Rotate(Vector3.back * tiltSpeed, Space.Self);
+                        break;
+                    case (1):
+                        CameraHolder.transform.Rotate(Vector3.right * tiltSpeed, Space.Self);
+                        CameraHolder.transform.Rotate(Vector3.back * tiltSpeed, Space.Self);
+                        break;
+                    case (2):
+                        CameraHolder.transform.Rotate(Vector3.right * tiltSpeed, Space.Self);
+                        CameraHolder.transform.Rotate(Vector3.forward * tiltSpeed, Space.Self);
+                        break;
+                    case (3):
+                        CameraHolder.transform.Rotate(Vector3.left * tiltSpeed, Space.Self);
+                        CameraHolder.transform.Rotate(Vector3.forward * tiltSpeed, Space.Self);
+                        break;
+                
+                }
 
             elapsed += Time.deltaTime;
 
             yield return null;
         }
-
-        while (elapsed < rotationShakeDuration * .5f)
-        {
-            for (int i = 0; i < 12; i++)
-                camera[i].transform.Rotate(Vector3.up * rotationShakeSpeed, Space.World);
-
-            elapsed += Time.deltaTime;
-
-            yield return null;
-        }
-
-        for (int i = 0; i < 12; i++)
-            camera[i].transform.eulerAngles = camPos[i];
     }
 
 
     //Change the active camera
     void ChangeCamera()
     {
-        for (int i = 0; i < 12; i++)
-            camera[i].GetComponent<Camera>().enabled = false;
-
-        switch (cameraVal)
+        if (!tilting)
         {
-            case (0):
-                camera[0].GetComponent<Camera>().enabled = true;
-                cameraOrientation = 0;
-                break;
-            case (1):
-                camera[1].GetComponent<Camera>().enabled = true;
-                cameraOrientation = 0;
-                break;
-            case (2):
-                camera[2].GetComponent<Camera>().enabled = true;
-                cameraOrientation = 1;
-                break;
-            case (3):
-                camera[3].GetComponent<Camera>().enabled = true;
-                cameraOrientation = 1;
-                break;
-            case (4):
-                camera[4].GetComponent<Camera>().enabled = true;
-                cameraOrientation = 1;
-                break;
-            case (5):
-                camera[5].GetComponent<Camera>().enabled = true;
-                cameraOrientation = 2;
-                break;
-            case (6):
-                camera[6].GetComponent<Camera>().enabled = true;
-                cameraOrientation = 2;
-                break;
-            case (7):
-                camera[7].GetComponent<Camera>().enabled = true;
-                cameraOrientation = 2;
-                break;
-            case (8):
-                camera[8].GetComponent<Camera>().enabled = true;
-                cameraOrientation = 3;
-                break;
-            case (9):
-                camera[9].GetComponent<Camera>().enabled = true;
-                cameraOrientation = 3;
-                break;
-            case (10):
-                camera[10].GetComponent<Camera>().enabled = true;
-                cameraOrientation = 3;
-                break;
-            case (11):
-                camera[11].GetComponent<Camera>().enabled = true;
-                cameraOrientation = 0;
-                break;
+            for (int i = 0; i < 4; i++)
+            {
+                camera[i].GetComponent<Camera>().enabled = false;
+                rotationCamera[i].GetComponent<Camera>().enabled = false;
+            }
+
+            switch (cameraVal)
+            {
+                case (0):
+                    camera[0].GetComponent<Camera>().enabled = true;
+                    rotationCamera[0].GetComponent<Camera>().enabled = true;
+                    cameraOrientation = 0;
+                    break;
+                case (1):
+                    camera[1].GetComponent<Camera>().enabled = true;
+                    rotationCamera[1].GetComponent<Camera>().enabled = true;
+                    cameraOrientation = 1;
+                    break;
+                case (2):
+                    camera[2].GetComponent<Camera>().enabled = true;
+                    rotationCamera[2].GetComponent<Camera>().enabled = true;
+                    cameraOrientation = 2;
+                    break;
+                case (3):
+                    camera[3].GetComponent<Camera>().enabled = true;
+                    rotationCamera[3].GetComponent<Camera>().enabled = true;
+                    cameraOrientation = 3;
+                    break;
+            }
         }
     }
 

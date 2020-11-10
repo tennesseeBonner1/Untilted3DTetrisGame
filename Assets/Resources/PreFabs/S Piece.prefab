@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33498472141541896}
   - component: {fileID: 23280903288602398}
   - component: {fileID: 65580398139751232}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: S Piece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,12 +29,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4161135161208998}
-  - {fileID: 4918001958082186}
-  - {fileID: 4184834784198702}
+  m_Children: []
   m_Father: {fileID: 4944504946817252}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33498472141541896
 MeshFilter:
@@ -107,7 +104,7 @@ GameObject:
   - component: {fileID: 33731507261952570}
   - component: {fileID: 23242506746787066}
   - component: {fileID: 65002123496511920}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lime Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,10 +119,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307438888763500}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4200761308392392}
+  m_Father: {fileID: 4944504946817252}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33731507261952570
@@ -199,7 +196,7 @@ GameObject:
   - component: {fileID: 33633502795160748}
   - component: {fileID: 23794128984048750}
   - component: {fileID: 65831543124935520}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lime Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,10 +211,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395166317787884}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4200761308392392}
+  m_Father: {fileID: 4944504946817252}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33633502795160748
@@ -288,8 +285,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4944504946817252}
-  m_Layer: 0
-  m_Name: 'S Piece '
+  m_Layer: 8
+  m_Name: S Piece
   m_TagString: S Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -306,6 +303,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4161135161208998}
+  - {fileID: 4918001958082186}
+  - {fileID: 4184834784198702}
   - {fileID: 4200761308392392}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 33072559896918726}
   - component: {fileID: 23733759606175366}
   - component: {fileID: 65458509238461590}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lime Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,10 +337,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521960320834150}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4200761308392392}
+  m_Father: {fileID: 4944504946817252}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33072559896918726

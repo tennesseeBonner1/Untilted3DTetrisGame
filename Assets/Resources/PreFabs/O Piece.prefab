@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4474657341697908}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: O Piece
   m_TagString: O Piece
   m_Icon: {fileID: 0}
@@ -27,6 +27,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4304970413932254}
+  - {fileID: 4656155374448064}
+  - {fileID: 4519389666667448}
   - {fileID: 4187857476940630}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -43,7 +46,7 @@ GameObject:
   - component: {fileID: 33276761976011260}
   - component: {fileID: 23451161930550192}
   - component: {fileID: 65140082434433462}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Yellow Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,10 +61,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344374560978798}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 1}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4187857476940630}
+  m_Father: {fileID: 4474657341697908}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33276761976011260
@@ -135,7 +138,7 @@ GameObject:
   - component: {fileID: 33718986406276938}
   - component: {fileID: 23399096022628270}
   - component: {fileID: 65649239145399114}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: O Piece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,12 +155,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4304970413932254}
-  - {fileID: 4656155374448064}
-  - {fileID: 4519389666667448}
+  m_Children: []
   m_Father: {fileID: 4474657341697908}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33718986406276938
 MeshFilter:
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 33935771158330236}
   - component: {fileID: 23601108280891968}
   - component: {fileID: 65392506262026148}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Yellow Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,10 +245,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704601358458694}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4187857476940630}
+  m_Father: {fileID: 4474657341697908}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33935771158330236
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 33093534606218822}
   - component: {fileID: 23677792830893180}
   - component: {fileID: 65985153648655414}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Yellow Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,10 +337,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827215108075106}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4187857476940630}
+  m_Father: {fileID: 4474657341697908}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33093534606218822

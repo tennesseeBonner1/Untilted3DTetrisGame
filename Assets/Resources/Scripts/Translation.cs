@@ -219,18 +219,18 @@ public class Translation : MonoBehaviour
             }
         }
 
-        int cbY = BoardMatrix.GetLength(1);
+        
 
-        int difference = cbY - 4;
+        int cbY = BoardMatrix.GetLength(1);
 
         int[,] tempPieceList = {{ 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }};
         for (int i = 0; i < 4; i++)
         {
-            tempPieceList[i, 0] = pieceList[i, 0] + difference;
-            tempPieceList[i, 1] = pieceList[i, 1] + difference;
-            tempPieceList[i, 2] = pieceList[i, 2] + difference;
+            tempPieceList[i, 0] = pieceList[i, 0];
+            tempPieceList[i, 1] = pieceList[i, 1] + (cbY - 4);
+            tempPieceList[i, 2] = pieceList[i, 2];
         }
-        
+
         int temp = 0;
         bool works = true;
 
@@ -268,6 +268,7 @@ public class Translation : MonoBehaviour
                 return true;
             }
         }
+
         return false;
     }
 
